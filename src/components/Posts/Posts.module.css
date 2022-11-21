@@ -1,0 +1,36 @@
+.post {
+  max-width: 33.33%;
+  flex: 33.33% 0;
+  background-color: white;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  max-height: 270px;
+}
+
+.content {
+  padding: 10px 20px;
+}
+
+.date {
+  display: block;
+  text-align: right;
+  color: gray;
+}
+
+.title {
+  margin: 0 0 10px;
+}
+
+.wysiwyg {
+}
+
+.wysiwyg p {
+  margin-top: 0;
+}
