@@ -1,0 +1,14 @@
+.container {
+  margin: 40px 50px 20px;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 40px;
+}
+
+.footer {
+  margin-top: 40px;
+  text-align: center;
+}

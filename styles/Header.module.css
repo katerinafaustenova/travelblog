@@ -2,12 +2,12 @@
   position: relative;
   width: 100%;
   height: auto;
-  max-height: 100px;
-  padding: 20px;
+  min-height: 80px;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 40px;
 }
 
 .image {
@@ -20,6 +20,7 @@
 
 .image a {
   line-height: 1;
+  font-size: 1px;
 }
 
 .image img {
