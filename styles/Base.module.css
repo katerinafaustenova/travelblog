@@ -1,3 +1,7 @@
+.container {
+  margin: 40px 50px 20px;
+}
+
 .header {
   position: relative;
   width: 100%;
@@ -39,4 +43,9 @@
 .title p {
   margin: 0;
   font-style: italic;
+}
+
+.footer {
+  margin-top: 40px;
+  text-align: center;
 }

@@ -1,7 +1,5 @@
-import { getYear } from "date-fns";
 import { gql, GraphQLClient } from "graphql-request";
-import Head from "next/head";
-import Header from "../components/Header";
+import Base from "../components/Base";
 import Post from "../components/Post";
 import styles from "../styles/Home.module.css";
 
@@ -41,27 +39,12 @@ export async function getStaticProps() {
 
 export default function Home({ posts }: any) {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Travel blog</title>
-        <meta
-          name="description"
-          content="This is our travel blog for friend and family"
-        />
-        <link rel="icon" href="/travel.ico" />
-      </Head>
-
-      <Header />
-
+    <Base>
       <main className={styles.main}>
-        {posts.map((post: any) => {
-          return <Post post={post} />;
+        {posts.map((post: any, idx: number) => {
+          return <Post post={post} key={idx} />;
         })}
       </main>
-
-      <footer className={styles.footer}>
-        © Copyright {getYear(new Date())}. All rights reserved.
-      </footer>
-    </div>
+    </Base>
   );
 }
