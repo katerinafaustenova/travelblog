@@ -38,7 +38,9 @@ const sluglistQuery = gql`
 export async function getStaticPaths() {
   const { posts } = await endpoint.request(sluglistQuery);
   return {
-    paths: posts.map((post): any => ({ params: { slug: post.slug } })),
+    paths: posts.map((post: { slug: any }): any => ({
+      params: { slug: post.slug },
+    })),
     fallback: false,
   };
 }
