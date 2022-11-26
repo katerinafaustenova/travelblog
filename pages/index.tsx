@@ -23,6 +23,12 @@ const query = gql`
         url
         fileName
       }
+      category
+      description
+      map {
+        latitude
+        longitude
+      }
     }
   }
 `;

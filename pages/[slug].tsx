@@ -23,6 +23,13 @@ const query = gql`
         url
         fileName
       }
+      category
+      description
+      map {
+        latitude
+        longitude
+      }
+      itinerary
     }
   }
 `;
@@ -59,17 +66,22 @@ export async function getStaticProps({ params }: any) {
 export default function PostDetail({ post }: any) {
   if (!post) return null;
 
-  const { title, slug, date, content, image } = post;
+  const { title, date, content, image, description, category, map, itinerary } =
+    post;
+
+  console.log("data", map, itinerary);
 
   return (
     <Base>
       <main className={styles.main}>
         <img src={image?.url} alt={image?.fileName} className={styles.image} />
         <div className={styles.content}>
+          <small>{category}</small>
           <time className={styles.date}>
             {format(new Date(date), "dd.MM.yyyy")}
           </time>
           <h2 className={styles.title}>{title}</h2>
+          <p className={styles.perex}>{description}</p>
           <div
             dangerouslySetInnerHTML={{ __html: content?.html }}
             className={styles.wysiwyg}
