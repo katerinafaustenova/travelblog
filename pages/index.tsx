@@ -25,10 +25,6 @@ const query = gql`
       }
       category
       description
-      map {
-        latitude
-        longitude
-      }
     }
   }
 `;
