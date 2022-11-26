@@ -26,10 +26,7 @@ const query = gql`
       }
       category
       description
-      map {
-        latitude
-        longitude
-      }
+      map
       itinerary
       gallery {
         fileName
@@ -67,12 +64,6 @@ export async function getStaticProps({ params }: any) {
     revalidate: 100,
   };
 }
-
-import dynamic from "next/dynamic";
-
-const MapNoSSR = dynamic(() => import("../components/Map"), {
-  ssr: false,
-});
 
 export default function PostDetail({ post }: any) {
   useEffect(() => {
@@ -116,9 +107,12 @@ export default function PostDetail({ post }: any) {
             dangerouslySetInnerHTML={{ __html: content?.html }}
             className={styles.wysiwyg}
           />
-          <div className={styles.mapContainer}>
-            <MapNoSSR />
-          </div>
+          {map && (
+            <div
+              className={styles.mapContainer}
+              dangerouslySetInnerHTML={{ __html: map }}
+            />
+          )}
           {itinerary?.data && (
             <>
               <h3 className={styles.itineraryTitle}>Itinerář:</h3>
