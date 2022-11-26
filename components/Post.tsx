@@ -12,16 +12,14 @@ export default function Post({ post }: any) {
       <Link href={slug} className={styles.link}>
         <img src={image?.url} alt={image?.fileName} className={styles.image} />
         <div className={styles.content}>
-          <small>{category}</small>
-          <time className={styles.date}>
-            {format(new Date(date), "dd.MM.yyyy")}
-          </time>
+          <div className={styles.categoryDate}>
+            <span className={styles.category}>{category}</span>
+            <time className={styles.date}>
+              {format(new Date(date), "dd.MM.yyyy")}
+            </time>
+          </div>
           <h2 className={styles.title}>{title}</h2>
           <p className={styles.perex}>{description}</p>
-          {/* <div
-            dangerouslySetInnerHTML={{ __html: content?.html }}
-            className={styles.wysiwyg}
-          /> */}
         </div>
       </Link>
     </div>

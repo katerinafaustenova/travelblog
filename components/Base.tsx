@@ -24,7 +24,7 @@ export default function Base({ children }: any) {
           </Link>
         </div>
         <div className={styles.title}>
-          <h1>Ajtící na cestách</h1>
+          <h1>Káťa a Kuba na cestách</h1>
           <p>Blog o cestování a digitálním nomádství</p>
         </div>
       </header>
