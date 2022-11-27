@@ -1,34 +1,26 @@
-.main {
-  max-width: 900px;
-  margin: 0 auto;
+.title {
+  margin: 0 0 20px;
 }
 
-.image {
-  width: 100%;
-  height: auto;
-}
-
-.content {
-  margin: 10px 0;
-}
-
-.categoryDate {
+.info {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .category, .date {
   color: gray;
 }
 
-.title {
-  margin: 0 0 15px;
+.perex {
+  margin-bottom: 20px;
 }
 
-.perex {
-  margin-bottom: 25px;
+.image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
 }
 
 .wysiwyg {

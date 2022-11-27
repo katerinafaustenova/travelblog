@@ -42,11 +42,11 @@ export async function getStaticProps() {
 export default function Home({ posts }: any) {
   return (
     <Base>
-      <main className={styles.main}>
+      <section className={styles.content}>
         {posts.map((post: any, idx: number) => {
           return <Post post={post} key={idx} />;
         })}
-      </main>
+      </section>
     </Base>
   );
 }

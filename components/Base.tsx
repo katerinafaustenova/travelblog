@@ -40,7 +40,7 @@ export default function Base({ children }: any) {
         </header>
       )}
 
-      <div className={styles.content}>{children}</div>
+      <main className={styles.main}>{children}</main>
 
       <footer className={styles.footer}>
         © Copyright {getYear(new Date())}. All rights reserved.
