@@ -121,7 +121,7 @@ export default function PostDetail({ post }: any) {
                   <div className={styles.itineraryItem}>
                     <div className={styles.itineraryHeader}>
                       <time className={styles.itineraryDate}>{date}</time>
-                      <h4 className={styles.itineraryName}>{title}</h4>
+                      <h5 className={styles.itineraryName}>{title}</h5>
                     </div>
                     <div className={styles.itineraryContent}>
                       <p className={styles.itineraryText}>{text}</p>

@@ -62,19 +62,22 @@
 
 .itineraryTitle {
   margin: 35px 0;
+  text-align: center;
 }
 
 .itineraryItem {
-  margin: 20px;
-  padding: 0 20px;
-  background-image: url('../assets/itinerary-bg.png');
-  background-repeat: repeat-y;
+  margin-bottom: 15px;
+  padding: 0 40px;
+}
+
+.itineraryItem:last-child {
+  margin-bottom: 0;
 }
 
 .itineraryHeader {
   display: flex;
   background-color: white;
-  padding-bottom:10px;
+  padding-bottom: 15px;
 }
 
 .itineraryDate {
@@ -84,7 +87,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: rgb(119, 186, 248);
+  background-color: #0c7785a0;
   color: white;
   font-size: 14px;
   font-weight: bold;
@@ -93,15 +96,19 @@
 
 .itineraryName {
   font-size: 18px;
-  font-weight: bold;
   line-height: 60px;
   margin: 0;
 }
 
 .itineraryText {
-  padding: 10px 90px;
+  padding: 6px 58px;
+  border-left: 4px solid #eee;
+  margin-left: 28px;
 }
 
 .itineraryItem:hover .itineraryDate {
-  background-color: rgb(0, 132, 255);
+  background-color: #0c7785;
+}
+.itineraryItem:hover .itineraryText {
+  border-left-color: #0c77855d;
 }
