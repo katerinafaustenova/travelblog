@@ -31,13 +31,11 @@ export default function Base({ children }: any) {
           </div>
         </header>
       ) : (
-        <header className={styles.home}>
+        <header className={styles.headerHome}>
           <div className={styles.headerContent}>
-            <div className={styles.logo}>
-              <Link href="/">
-                <Image src={Home} alt="Home" width={20} height={20} />
-              </Link>
-            </div>
+            <Link href="/">
+              <Image src={Home} alt="Home" width={20} height={20} />
+            </Link>
           </div>
         </header>
       )}

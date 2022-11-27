@@ -36,20 +36,16 @@
   line-height: 60px;
 }
 
-.home {
-  position: relative;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #0c7785;
-  padding: 15px;
-  border-radius: 50%;
-  margin-left: 20px;
+.headerHome {
+  width: 100%;
 }
 
-.home a {
-  line-height: 1;
-  font-size: 1px;
+.headerHome .headerContent > a {
+  display: inline-block;
+  background-color: #0c7785;
+  padding: 20px;
+  border-radius: 50%;
+  margin: 0;
 }
 
 .content {
