@@ -93,15 +93,15 @@ export default function PostDetail({ post }: any) {
   return (
     <Base>
       <main className={styles.main}>
-        <img src={image?.url} alt={image?.fileName} className={styles.image} />
         <div className={styles.content}>
+          <h2 className={styles.title}>{title}</h2>
           <div className={styles.categoryDate}>
             <span className={styles.category}>{category}</span>
             <time className={styles.date}>
               {format(new Date(date), "dd.MM.yyyy")}
             </time>
           </div>
-          <h2 className={styles.title}>{title}</h2>
+        <img src={image?.url} alt={image?.fileName} className={styles.image} />
           <p className={styles.perex}>{description}</p>
           <div
             dangerouslySetInnerHTML={{ __html: content?.html }}

@@ -23,26 +23,33 @@ export default function Base({ children }: any) {
 
       {asPath === "/" ? (
         <header className={styles.header}>
-          <div className={styles.image}>
-            <Link href="/">
-              <Image src={Logo} alt="Logo" width={80} height={80} />
-            </Link>
-          </div>
-          <div className={styles.title}>
-            <h1>Káťa a Kuba na cestách</h1>
-            <p>Blog o cestování a digitálním nomádství</p>
+          <div className={styles.headerContent}>
+            <div className={styles.image}>
+              <Link href="/">
+                <Image src={Logo} alt="Logo" width={80} height={80} />
+              </Link>
+            </div>
+            <div className={styles.title}>
+              <h1>Káťa a Kuba na cestách</h1>
+            </div>
           </div>
         </header>
       ) : (
         <header className={styles.home}>
-          <Link href="/">
-            <Image src={Home} alt="Home" width={20} height={20} />
-          </Link>
+          <div className={styles.headerContent}>
+            <div className={styles.logo}>
+              <Link href="/">
+                <Image src={Home} alt="Home" width={20} height={20} />
+              </Link>
+            </div>
+          </div>
         </header>
       )}
 
+      
+        <div className={styles.content}>
       {children}
-
+</div>
       <footer className={styles.footer}>
         © Copyright {getYear(new Date())}. All rights reserved.
       </footer>
