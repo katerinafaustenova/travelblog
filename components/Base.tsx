@@ -24,14 +24,10 @@ export default function Base({ children }: any) {
       {asPath === "/" ? (
         <header className={styles.header}>
           <div className={styles.headerContent}>
-            <div className={styles.image}>
-              <Link href="/">
-                <Image src={Logo} alt="Logo" width={80} height={80} />
-              </Link>
-            </div>
-            <div className={styles.title}>
-              <h1>Káťa a Kuba na cestách</h1>
-            </div>
+            <Link href="/">
+              <Image src={Logo} alt="Logo" width={60} height={60} />
+            </Link>
+            <h1>Káťa a Kuba na cestách</h1>
           </div>
         </header>
       ) : (
@@ -46,10 +42,8 @@ export default function Base({ children }: any) {
         </header>
       )}
 
-      
-        <div className={styles.content}>
-      {children}
-</div>
+      <div className={styles.content}>{children}</div>
+
       <footer className={styles.footer}>
         © Copyright {getYear(new Date())}. All rights reserved.
       </footer>
