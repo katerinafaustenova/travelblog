@@ -45,6 +45,22 @@
   font-style: italic;
 }
 
+.home {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0c7785;
+  padding: 15px;
+  border-radius: 50%;
+  margin-left: 20px;
+}
+
+.home a {
+  line-height: 1;
+  font-size: 1px;
+}
+
 .footer {
   margin-top: 40px;
   text-align: center;
