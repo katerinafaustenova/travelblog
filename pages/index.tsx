@@ -43,10 +43,12 @@ export default function Home({ posts }: any) {
   return (
     <Base>
       <section className={styles.content}>
-      <div className={styles.sectionTitle}>Bali</div>
-        {posts.map((post: any, idx: number) => {
-          return <Post post={post} key={idx} />;
-        })}
+        <div className={styles.sectionTitle}>Bali</div>
+        <div className={styles.posts}>
+          {posts.map((post: any, idx: number) => {
+            return <Post post={post} key={idx} />;
+          })}
+        </div>
       </section>
     </Base>
   );

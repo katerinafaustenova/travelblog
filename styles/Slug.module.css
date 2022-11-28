@@ -1,6 +1,11 @@
 .content {
   margin-bottom: 60px;
 }
+@media screen and (max-width: 1080px) {
+  .content {
+    margin-top: 60px;
+  }
+}
 
 .title {
   margin: 0 0 20px;
@@ -63,7 +68,7 @@
 
 .itineraryItem {
   margin-bottom: 15px;
-  padding: 0 40px;
+  /* padding: 0 40px; */
 }
 
 .itineraryItem:last-child {

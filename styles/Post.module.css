@@ -6,6 +6,13 @@
   border-radius: 20px;
   overflow: hidden;
   text-decoration: none;
+  transition: all .1s ease-in-out;
+}
+
+.post:hover {
+  -webkit-box-shadow: 5px 5px 10px 0px rgb(174, 174, 174);
+  -moz-box-shadow: 5px 5px 10px 0px rgba(174,174,174,1);
+  box-shadow: 5px 5px 10px 0px rgba(174,174,174,1);
 }
 
 .link:hover {

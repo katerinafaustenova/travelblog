@@ -1,4 +1,8 @@
- 
+
+.content {
+  padding: 130px 0 50px;
+}
+
 .sectionTitle {
   border-bottom: 2px solid #dadada;
   margin-bottom: 20px;
@@ -7,9 +11,18 @@
   font-weight: bold;
 }
 
-.content {
+.posts {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 40px;
-  padding: 130px 0 50px;
+}
+@media screen and (max-width: 800px) {
+  .posts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 600px) {
+  .posts {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
