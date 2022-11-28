@@ -13,7 +13,7 @@ export default function Post({ post }: any) {
         <img src={image?.url} alt={image?.fileName} className={styles.image} />
         <div className={styles.content}>
           <div className={styles.categoryDate}>
-            <span className={styles.category}>{category}</span>
+            {/* <span className={styles.category}>{category}</span> */}
             <time className={styles.date}>
               {format(new Date(date), "dd.MM.yyyy")}
             </time>

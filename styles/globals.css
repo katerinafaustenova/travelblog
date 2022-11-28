@@ -25,3 +25,13 @@ a {
 p {
   line-height: 1.4;
 }
+
+.link {
+  color: #0c7785;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.link:hover {
+  text-decoration: none;
+}
