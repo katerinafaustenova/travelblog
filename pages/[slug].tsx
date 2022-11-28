@@ -93,17 +93,15 @@ export default function PostDetail({ post }: any) {
   return (
     <Base>
       <section className={styles.content}>
-        {/* <div className={styles.info}> */}
-        <div className={styles.content}>
-          <h2 className={styles.title}>{title}</h2>
-          <div className={styles.categoryDate}>
-            <span className={styles.category}>{category}</span>
-            <time className={styles.date}>
-              {format(new Date(date), "dd.MM.yyyy")}
-            </time>
-          </div>
+        <div className={styles.info}>
+          <span className={styles.category}>{category}</span>
+          <time className={styles.date}>
+            {format(new Date(date), "dd.MM.yyyy")}
+          </time>
+        </div>
+        <h2 className={styles.title}>{title}</h2>
+        <p className={styles.perex}>{description}</p>
         <img src={image?.url} alt={image?.fileName} className={styles.image} />
-          <p className={styles.perex}>{description}</p>
           <div
             dangerouslySetInnerHTML={{ __html: content?.html }}
             className={styles.wysiwyg}
@@ -134,38 +132,6 @@ export default function PostDetail({ post }: any) {
               ))}
             </>
           )}
-        </div>
-        <h2 className={styles.title}>{title}</h2>
-        <p className={styles.perex}>{description}</p>
-        <img src={image?.url} alt={image?.fileName} className={styles.image} />
-        <div
-          dangerouslySetInnerHTML={{ __html: content?.html }}
-          className={styles.wysiwyg}
-        />
-        {map && (
-          <div
-            className={styles.mapContainer}
-            dangerouslySetInnerHTML={{ __html: map }}
-          />
-        )}
-        {itinerary?.data && (
-          <>
-            <h3 className={styles.itineraryTitle}>Itinerář:</h3>
-            {itinerary.data.map(({ date, text, title }: any, idx: number) => (
-              <>
-                <div className={styles.itineraryItem}>
-                  <div className={styles.itineraryHeader}>
-                    <time className={styles.itineraryDate}>{date}</time>
-                    <h5 className={styles.itineraryName}>{title}</h5>
-                  </div>
-                  <div className={styles.itineraryContent}>
-                    <p className={styles.itineraryText}>{text}</p>
-                  </div>
-                </div>
-              </>
-            ))}
-          </>
-        )}
       </section>
     </Base>
   );
