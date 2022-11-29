@@ -16,7 +16,7 @@ export default function Base({ children }: any) {
         <title>Káťa a Kuba na cestách</title>
         <meta
           name="description"
-          content="This is our travel blog for friend and family"
+          content="This is our travel blog for friends and family"
         />
         <link rel="icon" href="/travel.ico" />
       </Head>

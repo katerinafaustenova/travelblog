@@ -47,22 +47,28 @@
   margin-bottom: 0;
 }
 
-.wysiwyg > img {
-  width: calc(50% - 15px);
+.wysiwyg > img,
+.wysiwyg > div[class="images"] > img {
+  width: calc(50% - 10px);
   height: auto;
+  margin-bottom: 20px;
 }
 
-.wysiwyg > img + img {
-  margin-left: 30px;
+/* první řádek je pouze pro 2 img za sebou, další řádek je s obalem */
+.wysiwyg > img + img,
+.wysiwyg > div[class="images"] > img:nth-child(even) {
+  margin-left: 20px;
 }
 
 @media screen and (max-width: 700px) {
-  .wysiwyg > img {
+  .wysiwyg > img,
+  .wysiwyg > div[class="images"] > img {
     width: 100%;
+    margin-bottom: 10px;
   }
-  .wysiwyg > img + img {
+  .wysiwyg > img + img,
+  .wysiwyg > div[class="images"] > img:nth-child(even) {
     margin-left: 0px;
-    margin-top: 10px;
   }
 }
 

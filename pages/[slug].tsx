@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { gql, GraphQLClient } from "graphql-request";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Base from "../components/Base";
 import styles from "../styles/Slug.module.css";
 
@@ -27,10 +27,6 @@ const query = gql`
       category
       description
       map
-      gallery {
-        fileName
-        url
-      }
       itinerary_item_ref {
         ... on Itinerary_item_for_post {
           id
@@ -38,6 +34,10 @@ const query = gql`
           text
           date
         }
+      }
+      gallery {
+        fileName
+        url
       }
     }
   }
@@ -95,8 +95,6 @@ export default function PostDetail({ post }: any) {
     gallery,
   } = post;
 
-  console.log("gallery", gallery);
-
   return (
     <Base>
       <section className={styles.content}>
@@ -124,7 +122,7 @@ export default function PostDetail({ post }: any) {
             <h3 className={styles.itineraryTitle}>Itinerář:</h3>
             {itinerary_item_ref.map(({ id, title, date, text }: any) => {
               return (
-                <>
+                <React.Fragment key={id}>
                   <div className={styles.itineraryItem}>
                     <div className={styles.itineraryHeader}>
                       <time className={styles.itineraryDate}>
@@ -141,7 +139,7 @@ export default function PostDetail({ post }: any) {
                       )}
                     </div>
                   </div>
-                </>
+                </React.Fragment>
               );
             })}
           </>
