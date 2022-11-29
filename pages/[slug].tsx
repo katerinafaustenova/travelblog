@@ -95,6 +95,8 @@ export default function PostDetail({ post }: any) {
     gallery,
   } = post;
 
+  const processedHtml = content?.html?.replaceAll("amp;", "");
+
   return (
     <Base>
       <section className={styles.content}>
@@ -108,7 +110,7 @@ export default function PostDetail({ post }: any) {
         <p className={styles.perex}>{description}</p>
         <img src={image?.url} alt={image?.fileName} className={styles.image} />
         <div
-          dangerouslySetInnerHTML={{ __html: content?.html }}
+          dangerouslySetInnerHTML={{ __html: processedHtml }}
           className={styles.wysiwyg}
         />
         {map && (

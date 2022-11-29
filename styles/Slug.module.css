@@ -127,6 +127,7 @@
   padding-left: 58px;
   border-left: 4px solid #eee;
   margin-left: 28px;
+  text-align: justify;
 }
 @media screen and (max-width: 900px) {
   .itineraryText {
