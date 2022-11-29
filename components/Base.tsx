@@ -13,7 +13,7 @@ export default function Base({ children }: any) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Travel blog</title>
+        <title>Káťa a Kuba na cestách</title>
         <meta
           name="description"
           content="This is our travel blog for friend and family"
@@ -43,7 +43,7 @@ export default function Base({ children }: any) {
       <main className={styles.main}>{children}</main>
 
       <footer className={styles.footer}>
-        © Copyright {getYear(new Date())}. All rights reserved. <Link href="/admin" className={styles.hiddenLink}>ADMIN</Link>
+        © Copyright {getYear(new Date())}. All rights reserved.
       </footer>
     </div>
   );
