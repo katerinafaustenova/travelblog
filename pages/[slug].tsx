@@ -27,10 +27,17 @@ const query = gql`
       category
       description
       map
-      itinerary
       gallery {
         fileName
         url
+      }
+      itinerary_item_ref {
+        ... on Itinerary_item_for_post {
+          id
+          title
+          text
+          date
+        }
       }
     }
   }
@@ -84,7 +91,7 @@ export default function PostDetail({ post }: any) {
     description,
     category,
     map,
-    itinerary,
+    itinerary_item_ref,
     gallery,
   } = post;
 
@@ -102,36 +109,43 @@ export default function PostDetail({ post }: any) {
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.perex}>{description}</p>
         <img src={image?.url} alt={image?.fileName} className={styles.image} />
+        <div
+          dangerouslySetInnerHTML={{ __html: content?.html }}
+          className={styles.wysiwyg}
+        />
+        {map && (
           <div
-            dangerouslySetInnerHTML={{ __html: content?.html }}
-            className={styles.wysiwyg}
+            className={styles.mapContainer}
+            dangerouslySetInnerHTML={{ __html: map }}
           />
-          {map && (
-            <div
-              className={styles.mapContainer}
-              dangerouslySetInnerHTML={{ __html: map }}
-            />
-          )}
-          {itinerary?.data && (
-            <>
-              <h3 className={styles.itineraryTitle}>Itinerář:</h3>
-              {itinerary.data.map(({ date, text, title }: any, idx: number) => (
+        )}
+        {itinerary_item_ref && (
+          <>
+            <h3 className={styles.itineraryTitle}>Itinerář:</h3>
+            {itinerary_item_ref.map(({ id, title, date, text }: any) => {
+              return (
                 <>
                   <div className={styles.itineraryItem}>
                     <div className={styles.itineraryHeader}>
-                      <time className={styles.itineraryDate}>{date}</time>
+                      <time className={styles.itineraryDate}>
+                        {format(new Date(date), "dd.MM")}
+                      </time>
                       <h5 className={styles.itineraryName}>{title}</h5>
                     </div>
                     <div className={styles.itineraryContent}>
                       {text && (
-                        <p className={styles.itineraryText} dangerouslySetInnerHTML={{ __html: text }}/>
+                        <p
+                          className={styles.itineraryText}
+                          dangerouslySetInnerHTML={{ __html: text }}
+                        />
                       )}
                     </div>
                   </div>
                 </>
-              ))}
-            </>
-          )}
+              );
+            })}
+          </>
+        )}
       </section>
     </Base>
   );

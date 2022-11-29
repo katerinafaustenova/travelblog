@@ -9,23 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/google-map-react": "^2.1.7",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
     "date-fns": "^2.29.3",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
-    "google-map-react": "^2.2.0",
     "graphql": "^16.6.0",
     "graphql-request": "^5.0.0",
-    "leaflet": "^1.9.3",
     "next": "13.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-leaflet": "^4.1.0",
-    "react-mapycz": "^1.1.23",
-    "react-simple-maps": "^3.0.0",
     "typescript": "4.9.3"
   },
   "devDependencies": {
