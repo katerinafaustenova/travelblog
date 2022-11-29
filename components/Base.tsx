@@ -43,7 +43,7 @@ export default function Base({ children }: any) {
       <main className={styles.main}>{children}</main>
 
       <footer className={styles.footer}>
-        © Copyright {getYear(new Date())}. All rights reserved.
+        © Copyright {getYear(new Date())}. All rights reserved. <Link href="/admin" className={styles.hiddenLink}>ADMIN</Link>
       </footer>
     </div>
   );
