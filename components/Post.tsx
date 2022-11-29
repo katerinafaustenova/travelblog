@@ -18,7 +18,10 @@ export default function Post({ post }: any) {
             </time>
           </div>
           <h2 className={styles.title}>{title}</h2>
-          <p className={styles.perex}>{description}</p>
+          <p
+            className={styles.perex}
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         </div>
       </Link>
     </div>

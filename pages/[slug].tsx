@@ -107,7 +107,10 @@ export default function PostDetail({ post }: any) {
           </time>
         </div>
         <h2 className={styles.title}>{title}</h2>
-        <p className={styles.perex}>{description}</p>
+        <p
+          className={styles.perex}
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
         <img src={image?.url} alt={image?.fileName} className={styles.image} />
         <div
           dangerouslySetInnerHTML={{ __html: processedHtml }}
