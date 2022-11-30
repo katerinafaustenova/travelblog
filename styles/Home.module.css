@@ -16,12 +16,12 @@
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 40px;
 }
-@media screen and (max-width: 800px) {
+@media all and (max-width: 800px) {
   .posts {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-@media screen and (max-width: 600px) {
+@media all and (max-width: 600px) {
   .posts {
     grid-template-columns: repeat(1, 1fr);
   }

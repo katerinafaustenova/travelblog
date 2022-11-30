@@ -63,7 +63,7 @@
   background-color: #0b525c;
 }
 
-@media screen and (max-width: 1080px) {
+@media all and (max-width: 1080px) {
   .headerHome .headerContent > a {
     left: 0px;
   }

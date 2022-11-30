@@ -10,7 +10,13 @@ export default function Post({ post }: any) {
   return (
     <div className={styles.post}>
       <Link href={slug} className={styles.link}>
-        <img src={image?.url} alt={image?.fileName} className={styles.image} />
+        <div className={styles.imageWrapper}>
+          <img
+            src={image?.url}
+            alt={image?.fileName}
+            className={styles.image}
+          />
+        </div>
         <div className={styles.content}>
           <div className={styles.categoryDate}>
             <time className={styles.date}>
