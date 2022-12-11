@@ -34,15 +34,41 @@
   margin-bottom: 20px;
 }
 
-.wysiwyg {
-  text-align: justify;
+.imageWrapper > img {
+  object-fit: cover;
 }
 
-.wysiwyg > p {
+.wysiwyg {
+  text-align: justify;
   margin: 15px 0;
 }
 
-.wysiwyg > p:first-child {
+.wysiwygImages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.wysiwygImageFlex {
+  position: relative;
+  flex: calc(50% - 10px) 0;
+  width: calc(50% - 10px);
+}
+
+@media all and (max-width: 700px) {
+  .wysiwygImageFlex {
+    flex: 100% 0;
+    width: 100%;
+  }
+}
+
+.wysiwygImageWrapper {
+  width: 100%;
+}
+
+/* stare css pro obrazky v jednom wysiwygu */
+/* .wysiwyg > p:first-child {
   margin-top: 0;
 }
 .wysiwyg > p:last-child {
@@ -54,10 +80,10 @@
   width: calc(50% - 10px);
   height: auto;
   margin-bottom: 20px;
-}
+} */
 
 /* první řádek je pouze pro 2 img za sebou, další řádek je s obalem */
-.wysiwyg > img + img,
+/* .wysiwyg > img + img,
 .wysiwyg > div[class="images"] > img:nth-child(even) {
   margin-left: 20px;
 }
@@ -72,7 +98,7 @@
   .wysiwyg > div[class="images"] > img:nth-child(even) {
     margin-left: 0px;
   }
-}
+} */
 
 .mapContainer {
   height: 400px;

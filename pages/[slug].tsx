@@ -24,8 +24,21 @@ const query = gql`
         title
         fileName
       }
-      content {
-        html
+      contentWithImages {
+        ... on ContentWithImages {
+          id
+          content {
+            html
+          }
+          images {
+            id
+            url
+            title
+            fileName
+            width
+            height
+          }
+        }
       }
       map
       itinerary_item_ref {
@@ -62,7 +75,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: any) {
   const slug = params.slug;
   const { post } = await endpoint.request(query, { slug });
-  // chtelo by refaktor queries, nemusim tahat jeden post z query, kdyz uz tu mam natazene vsechny, staci vyfiltrovat
+  // TODO refaktor queries, nemusim tahat jeden post z query, kdyz uz tu mam natazene vsechny
   const { posts } = await endpoint.request(sluglistQuery);
   const sluglist = posts.map((post: any) => {
     return { slug: post.slug, title: post.title };
@@ -83,7 +96,7 @@ export default function PostDetail({ post, sluglist }: any) {
     title,
     description,
     image,
-    content,
+    contentWithImages,
     map,
     itinerary_item_ref,
     slug,
@@ -106,7 +119,6 @@ export default function PostDetail({ post, sluglist }: any) {
   const nextPost = sluglist[slugIndex + 1];
 
   const escapedCategory = category.replaceAll("_", " ");
-  const processedHtml = content?.html?.replaceAll("amp;", "");
 
   return (
     <Base>
@@ -137,14 +149,48 @@ export default function PostDetail({ post, sluglist }: any) {
             src={image.url}
             alt={image.title || image.fileName}
             fill
-            objectFit="cover"
+            priority
             sizes="(max-width: 900px) 100vw, 70vw"
           />
         </div>
-        <div
-          dangerouslySetInnerHTML={{ __html: processedHtml }}
-          className={styles.wysiwyg}
-        />
+        {contentWithImages?.length > 0 &&
+          contentWithImages.map(({ content, images }: any) => {
+            const escapedContent = content?.html?.replaceAll("amp;", "");
+            return (
+              <>
+                {escapedContent && (
+                  <div
+                    dangerouslySetInnerHTML={{ __html: escapedContent }}
+                    className={styles.wysiwyg}
+                  />
+                )}
+                {images?.length > 0 && (
+                  <div className={styles.wysiwygImages}>
+                    {images.map(
+                      ({ id, url, title, fileName, width, height }: any) => {
+                        const paddingRatio = (height / width) * 100;
+                        return (
+                          <div key={id} className={styles.wysiwygImageFlex}>
+                            <div
+                              className={styles.wysiwygImageWrapper}
+                              style={{ paddingBottom: `${paddingRatio}%` }}
+                            >
+                              <Image
+                                src={url}
+                                alt={title || fileName}
+                                fill
+                                sizes="(max-width: 700px) 100vw, 50vw"
+                              />
+                            </div>
+                          </div>
+                        );
+                      }
+                    )}
+                  </div>
+                )}
+              </>
+            );
+          })}
         {map && (
           <div
             className={styles.mapContainer}
