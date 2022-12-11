@@ -75,39 +75,6 @@
   width: 100%;
 }
 
-/* stare css pro obrazky v jednom wysiwygu */
-/* .wysiwyg > p:first-child {
-  margin-top: 0;
-}
-.wysiwyg > p:last-child {
-  margin-bottom: 0;
-}
-
-.wysiwyg > img,
-.wysiwyg > div[class="images"] > img {
-  width: calc(50% - 10px);
-  height: auto;
-  margin-bottom: 20px;
-} */
-
-/* první řádek je pouze pro 2 img za sebou, další řádek je s obalem */
-/* .wysiwyg > img + img,
-.wysiwyg > div[class="images"] > img:nth-child(even) {
-  margin-left: 20px;
-}
-
-@media all and (max-width: 700px) {
-  .wysiwyg > img,
-  .wysiwyg > div[class="images"] > img {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  .wysiwyg > img + img,
-  .wysiwyg > div[class="images"] > img:nth-child(even) {
-    margin-left: 0px;
-  }
-} */
-
 .mapContainer {
   height: 400px;
   margin-top: 50px;
@@ -142,7 +109,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background-color: #0c7785a0;
+  background-color: #0c7785;
   color: white;
   font-size: 14px;
   font-weight: bold;
@@ -168,7 +135,7 @@
 }
 
 .itineraryItem:hover .itineraryDate {
-  background-color: #0c7785;
+  background-color: #0b525c;
 }
 .itineraryItem:hover .itineraryText {
   border-left-color: #0c77855d;
