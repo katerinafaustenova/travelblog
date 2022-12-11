@@ -90,6 +90,16 @@ export async function getStaticProps({ params }: any) {
 }
 
 export default function PostDetail({ post, sluglist }: any) {
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      document?.querySelectorAll("p:empty").forEach((x) => {
+        x.remove();
+      });
+    }
+  }, [post.slug]);
+
+  if (!post) return null;
+
   const {
     date,
     category,
@@ -101,16 +111,6 @@ export default function PostDetail({ post, sluglist }: any) {
     itinerary_item_ref,
     slug,
   } = post;
-
-  useEffect(() => {
-    if (typeof window !== undefined) {
-      document?.querySelectorAll("p:empty").forEach((x) => {
-        x.remove();
-      });
-    }
-  }, [slug]);
-
-  if (!post) return null;
 
   const slugIndex = sluglist.findIndex(
     (slugItem: any) => slugItem.slug === slug
