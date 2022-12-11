@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { gql, GraphQLClient } from "graphql-request";
+import Image from "next/image";
 import React, { useEffect } from "react";
 import Base from "../components/Base";
 import styles from "../styles/Slug.module.css";
@@ -11,33 +12,28 @@ const endpoint = new GraphQLClient(
 const query = gql`
   query Post($slug: String!) {
     post(where: { slug: $slug }) {
-      createdAt
-      date
       id
+      date
       slug
+      category
       title
-      updatedAt
+      description
+      image {
+        url
+        title
+        fileName
+      }
       content {
         html
       }
-      image {
-        url
-        fileName
-      }
-      category
-      description
       map
       itinerary_item_ref {
         ... on Itinerary_item_for_post {
           id
+          date
           title
           text
-          date
         }
-      }
-      gallery {
-        fileName
-        url
       }
     }
   }
@@ -84,15 +80,14 @@ export default function PostDetail({ post }: any) {
   if (!post) return null;
 
   const {
-    title,
     date,
-    content,
-    image,
-    description,
     category,
+    title,
+    description,
+    image,
+    content,
     map,
     itinerary_item_ref,
-    gallery,
   } = post;
 
   const processedHtml = content?.html?.replaceAll("amp;", "");
@@ -111,7 +106,15 @@ export default function PostDetail({ post }: any) {
           className={styles.perex}
           dangerouslySetInnerHTML={{ __html: description }}
         />
-        <img src={image?.url} alt={image?.fileName} className={styles.image} />
+        <div className={styles.imageWrapper}>
+          <Image
+            src={image.url}
+            alt={image.title || image.fileName}
+            fill
+            objectFit="cover"
+            sizes="(max-width: 900px) 100vw, 70vw"
+          />
+        </div>
         <div
           dangerouslySetInnerHTML={{ __html: processedHtml }}
           className={styles.wysiwyg}

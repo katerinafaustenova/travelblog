@@ -1,4 +1,5 @@
 import { gql, GraphQLClient } from "graphql-request";
+import React from "react";
 import Base from "../components/Base";
 import Post from "../components/Post";
 import styles from "../styles/Home.module.css";
@@ -9,22 +10,18 @@ const endpoint = new GraphQLClient(
 
 const query = gql`
   {
-    posts {
-      createdAt
-      date
+    posts(orderBy: date_ASC) {
       id
+      date
       slug
+      category
       title
-      updatedAt
-      content {
-        html
-      }
+      description
       image {
         url
+        title
         fileName
       }
-      category
-      description
     }
   }
 `;
@@ -40,15 +37,29 @@ export async function getStaticProps() {
 }
 
 export default function Home({ posts }: any) {
+  if (!posts) return null;
+
+  const allCategories = posts.map(({ category }: any) => category);
+  const uniqueCategories = Array.from(new Set(allCategories));
+
   return (
     <Base>
       <section className={styles.content}>
-        <h2 className={styles.sectionTitle}>Bali</h2>
-        <div className={styles.posts}>
-          {posts.map((post: any, idx: number) => {
-            return <Post post={post} key={idx} />;
-          })}
-        </div>
+        {uniqueCategories.map((category: any, idx) => {
+          const escapedCategory = category.replaceAll("_", " ");
+          return (
+            <React.Fragment key={idx}>
+              <h2 className={styles.sectionTitle}>{escapedCategory}</h2>
+              <div className={styles.posts}>
+                {posts
+                  .filter((post: any) => post.category === category)
+                  .map((post: any, idx: number) => {
+                    return <Post post={post} key={idx} />;
+                  })}
+              </div>
+            </React.Fragment>
+          );
+        })}
       </section>
     </Base>
   );

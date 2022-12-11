@@ -1,19 +1,25 @@
 import { format } from "date-fns";
+import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Post.module.css";
 
 export default function Post({ post }: any) {
   if (!post) return null;
 
-  const { title, slug, date, description, image, category } = post;
+  const { slug, date, title, description, image } = post;
 
   return (
     <div className={styles.post}>
       <Link href={slug} className={styles.link}>
         <div className={styles.imageWrapper}>
-          <img
-            src={image?.url}
-            alt={image?.fileName}
+          <Image
+            src={image.url}
+            alt={image.title || image.fileName}
+            fill
+            objectFit="cover"
+            sizes="(max-width: 600px) 100vw,
+              (max-width: 800px) 50vw,
+              33vw"
             className={styles.image}
           />
         </div>
