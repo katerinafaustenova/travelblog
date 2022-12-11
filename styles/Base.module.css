@@ -23,6 +23,14 @@
   margin: 0 auto;
 }
 
+.headerHome .headerContent {
+    height: 0px;
+}
+
+.headerHome .headerContent > a{
+    top: 45px;
+}
+
 .headerContent > a {
   display: inline-block;
   line-height: 1;

@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { gql, GraphQLClient } from "graphql-request";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect } from "react";
 import Base from "../components/Base";
 import styles from "../styles/Slug.module.css";
@@ -43,6 +44,7 @@ const sluglistQuery = gql`
   {
     posts {
       slug
+      title
     }
   }
 `;
@@ -60,25 +62,20 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: any) {
   const slug = params.slug;
   const { post } = await endpoint.request(query, { slug });
+  // chtelo by refaktor queries, nemusim tahat jeden post z query, kdyz uz tu mam natazene vsechny, staci vyfiltrovat
+  const { posts } = await endpoint.request(sluglistQuery);
+  const sluglist = posts.map((post: any) => { return { slug: post.slug, title: post.title } });
   return {
     props: {
       post,
+      sluglist,
     },
     revalidate: 100,
   };
 }
 
-export default function PostDetail({ post }: any) {
-  useEffect(() => {
-    if (typeof window !== undefined) {
-      document?.querySelectorAll("p:empty").forEach((x) => {
-        x.remove();
-      });
-    }
-  }, []);
-
-  if (!post) return null;
-
+export default function PostDetail({ post, sluglist }: any) {
+  
   const {
     date,
     category,
@@ -88,13 +85,38 @@ export default function PostDetail({ post }: any) {
     content,
     map,
     itinerary_item_ref,
+    slug,
   } = post;
+  
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      document?.querySelectorAll("p:empty").forEach((x) => {
+        x.remove();
+      });
+    }
+  }, [slug]);
+
+  if (!post) return null;
+
+  const slugIndex = sluglist.findIndex((slugItem: any) => slugItem.slug === slug)
+  const prevPost = sluglist[slugIndex - 1]
+  const nextPost = sluglist[slugIndex + 1]
 
   const processedHtml = content?.html?.replaceAll("amp;", "");
 
   return (
     <Base>
       <section className={styles.content}>
+        {prevPost && (
+          <div className={styles.previousPost}>
+            <h3>
+              Předchozí článek:&nbsp;
+              <Link href={prevPost.slug} className={styles.link}>
+                {prevPost.title}
+              </Link>
+            </h3>
+          </div>
+        )}
         <div className={styles.info}>
           <span className={styles.category}>{category}</span>
           <time className={styles.date}>
@@ -151,6 +173,16 @@ export default function PostDetail({ post }: any) {
               );
             })}
           </>
+        )}
+        {nextPost && (
+          <div className={styles.nextPost}>
+            <h3>
+              Následující článek:&nbsp;
+              <Link href={nextPost.slug} className={styles.link}>
+                {nextPost.title}
+              </Link>
+            </h3>
+          </div>
         )}
       </section>
     </Base>

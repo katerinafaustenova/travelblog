@@ -144,4 +144,20 @@
   border-left-color: #0c77855d;
 }
 
+.previousPost {
+  margin-bottom: 50px;
+}
 
+.nextPost {
+  margin: 50px 0;
+}
+
+.link {
+  color: #0c7785;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.link:hover {
+  text-decoration: none;
+}

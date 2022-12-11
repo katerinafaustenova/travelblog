@@ -8,7 +8,7 @@ import Logo from "../assets/travel.png";
 import styles from "../styles/Base.module.css";
 
 export default function Base({ children }: any) {
-  const { asPath } = useRouter();
+  const { pathname } = useRouter();
 
   return (
     <div className={styles.container}>
@@ -21,7 +21,7 @@ export default function Base({ children }: any) {
         <link rel="icon" href="/travel.ico" />
       </Head>
 
-      {asPath === "/" ? (
+      {pathname === "/" ? (
         <header className={styles.header}>
           <div className={styles.headerContent}>
             <Link href="/">
