@@ -2,13 +2,17 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-   images: {
+  images: {
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'media.graphassets.com',
       },
     ],
+  },
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
   },
 }
 
