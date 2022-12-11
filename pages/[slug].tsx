@@ -64,7 +64,9 @@ export async function getStaticProps({ params }: any) {
   const { post } = await endpoint.request(query, { slug });
   // chtelo by refaktor queries, nemusim tahat jeden post z query, kdyz uz tu mam natazene vsechny, staci vyfiltrovat
   const { posts } = await endpoint.request(sluglistQuery);
-  const sluglist = posts.map((post: any) => { return { slug: post.slug, title: post.title } });
+  const sluglist = posts.map((post: any) => {
+    return { slug: post.slug, title: post.title };
+  });
   return {
     props: {
       post,
@@ -75,7 +77,6 @@ export async function getStaticProps({ params }: any) {
 }
 
 export default function PostDetail({ post, sluglist }: any) {
-  
   const {
     date,
     category,
@@ -87,7 +88,7 @@ export default function PostDetail({ post, sluglist }: any) {
     itinerary_item_ref,
     slug,
   } = post;
-  
+
   useEffect(() => {
     if (typeof window !== undefined) {
       document?.querySelectorAll("p:empty").forEach((x) => {
@@ -98,10 +99,13 @@ export default function PostDetail({ post, sluglist }: any) {
 
   if (!post) return null;
 
-  const slugIndex = sluglist.findIndex((slugItem: any) => slugItem.slug === slug)
-  const prevPost = sluglist[slugIndex - 1]
-  const nextPost = sluglist[slugIndex + 1]
+  const slugIndex = sluglist.findIndex(
+    (slugItem: any) => slugItem.slug === slug
+  );
+  const prevPost = sluglist[slugIndex - 1];
+  const nextPost = sluglist[slugIndex + 1];
 
+  const escapedCategory = category.replaceAll("_", " ");
   const processedHtml = content?.html?.replaceAll("amp;", "");
 
   return (
@@ -118,7 +122,7 @@ export default function PostDetail({ post, sluglist }: any) {
           </div>
         )}
         <div className={styles.info}>
-          <span className={styles.category}>{category}</span>
+          <span className={styles.category}>{escapedCategory}</span>
           <time className={styles.date}>
             {format(new Date(date), "dd.MM.yyyy")}
           </time>

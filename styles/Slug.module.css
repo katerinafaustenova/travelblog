@@ -88,10 +88,6 @@
   margin-bottom: 20px;
 }
 
-.itineraryItem:last-child {
-  margin-bottom: 0;
-}
-
 .itineraryHeader {
   display: flex;
   align-items: center;
@@ -145,11 +141,11 @@
 }
 
 .previousPost {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .nextPost {
-  margin: 50px 0;
+  margin-top: 60px;
 }
 
 .link {

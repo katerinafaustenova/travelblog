@@ -23,14 +23,6 @@
   margin: 0 auto;
 }
 
-.headerHome .headerContent {
-    height: 0px;
-}
-
-.headerHome .headerContent > a{
-    top: 45px;
-}
-
 .headerContent > a {
   display: inline-block;
   line-height: 1;
@@ -59,9 +51,14 @@
   height: 30px;
 }
 
+.headerHome .headerContent {
+  height: 0px;
+}
+
 .headerHome .headerContent > a {
   display: inline-block;
   left: -80px;
+  top: 40px;
   background-color: #0c7785;
   padding: 15px;
   border-radius: 50%;
