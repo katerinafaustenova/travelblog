@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import { gql, GraphQLClient } from "graphql-request";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Base from "../components/Base";
 import styles from "../styles/Slug.module.css";
 
@@ -117,6 +117,7 @@ export default function PostDetail({ post, sluglist }: any) {
   );
   const prevPost = sluglist[slugIndex - 1];
   const nextPost = sluglist[slugIndex + 1];
+  const showNextPost = sluglist[slugIndex + 2];
 
   const escapedCategory = category.replaceAll("_", " ");
 
@@ -202,29 +203,27 @@ export default function PostDetail({ post, sluglist }: any) {
             <h3 className={styles.itineraryTitle}>Itinerář:</h3>
             {itinerary_item_ref.map(({ id, title, date, text }: any) => {
               return (
-                <React.Fragment key={id}>
-                  <div className={styles.itineraryItem}>
-                    <div className={styles.itineraryHeader}>
-                      <time className={styles.itineraryDate}>
-                        {format(new Date(date), "dd.MM")}
-                      </time>
-                      <h5 className={styles.itineraryName}>{title}</h5>
-                    </div>
-                    <div className={styles.itineraryContent}>
-                      {text && (
-                        <p
-                          className={styles.itineraryText}
-                          dangerouslySetInnerHTML={{ __html: text }}
-                        />
-                      )}
-                    </div>
+                <div key={id} className={styles.itineraryItem}>
+                  <div className={styles.itineraryHeader}>
+                    <time className={styles.itineraryDate}>
+                      {format(new Date(date), "dd.MM")}
+                    </time>
+                    <h5 className={styles.itineraryName}>{title}</h5>
                   </div>
-                </React.Fragment>
+                  <div className={styles.itineraryContent}>
+                    {text && (
+                      <p
+                        className={styles.itineraryText}
+                        dangerouslySetInnerHTML={{ __html: text }}
+                      />
+                    )}
+                  </div>
+                </div>
               );
             })}
           </>
         )}
-        {nextPost && (
+        {nextPost && showNextPost && (
           <div className={styles.nextPost}>
             <h3>
               Následující článek:&nbsp;

@@ -39,7 +39,8 @@ export async function getStaticProps() {
 export default function Home({ posts }: any) {
   if (!posts) return null;
 
-  const allCategories = posts.map(({ category }: any) => category);
+  const newPosts = posts.slice(0, posts.length - 1);
+  const allCategories = newPosts.map(({ category }: any) => category);
   const uniqueCategories = Array.from(new Set(allCategories));
 
   return (
@@ -51,7 +52,7 @@ export default function Home({ posts }: any) {
             <React.Fragment key={idx}>
               <h2 className={styles.sectionTitle}>{escapedCategory}</h2>
               <div className={styles.posts}>
-                {posts
+                {newPosts
                   .filter((post: any) => post.category === category)
                   .map((post: any, idx: number) => {
                     return <Post post={post} key={idx} />;
