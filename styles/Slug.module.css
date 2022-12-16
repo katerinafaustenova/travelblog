@@ -43,6 +43,12 @@
   margin: 25px 0;
 }
 
+.wysiwyg > h3, 
+.wysiwyg > h4 {
+  text-align: center;
+  padding: 25px 0;
+}
+
 .wysiwyg > p {
   margin-bottom: 15px;
 }
