@@ -81,6 +81,22 @@
   width: 100%;
 }
 
+@media all and (max-width: 400px) {
+  .wysiwyg > iframe {
+    width: 100%;
+    max-width: 900px;
+    height: 195px;
+  }
+}
+@media all and (min-width: 401px) and (max-width: 900px) {
+  .wysiwyg > iframe {
+    width: 100%;
+    max-width: 900px;
+    height: 300px;
+  }
+}
+
+
 .mapContainer {
   height: 400px;
   margin-top: 50px;
