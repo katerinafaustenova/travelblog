@@ -46,7 +46,7 @@ export default function Home({ posts }: any) {
   return (
     <Base>
       <section className={styles.content}>
-        {uniqueCategories.map((category: any, idx) => {
+        {/* {uniqueCategories.map((category: any, idx) => {
           const escapedCategory = category.replaceAll("_", " ");
           return (
             <React.Fragment key={idx}>
@@ -60,8 +60,15 @@ export default function Home({ posts }: any) {
               </div>
             </React.Fragment>
           );
-        })}
-      </section>
+        })}*/}
+        <h2 className={styles.sectionTitle}>Indonésie</h2>
+        <div className={styles.posts}>
+          {newPosts.map((post: any, idx: number) => {
+              return <Post post={post} key={idx} />;
+          }
+          )}
+        </div>
+      </section> 
     </Base>
   );
 }

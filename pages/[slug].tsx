@@ -119,7 +119,7 @@ export default function PostDetail({ post, sluglist }: any) {
   const nextPost = sluglist[slugIndex + 1];
   const showNextPost = sluglist[slugIndex + 2];
 
-  const escapedCategory = category.replaceAll("_", " ");
+  const escapedCategory = category.replaceAll("_", " ");// todo vyseparovat bokem, je pouzito dvakrat
 
   return (
     <Base>
