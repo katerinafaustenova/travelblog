@@ -98,9 +98,28 @@
 
 
 .mapContainer {
+  width: 900px;
   height: 400px;
   margin-top: 50px;
 }
+@media all and (max-width: 400px) {
+  .mapContainer {
+    height: 195px;
+    width: 100%;
+  }
+}
+@media all and (min-width: 401px) and (max-width: 900px) {
+  .mapContainer {
+    height: 300px;
+    width: 100%;
+  }
+}
+
+.mapContainer > iframe {
+  width: 100%;
+  height: 100%;
+}
+
 
 .itineraryTitle {
   margin: 50px 0 35px;
@@ -137,11 +156,24 @@
   font-weight: bold;
   margin-right: 30px;
 }
+@media all and (max-width: 500px) {
+  .itineraryDate {
+    width: 48px;
+    height: 48px;
+    font-size: 13px;
+    margin-right: 15px;
+  }
+}
 
 .itineraryName {
   font-size: 18px;
   line-height: 30px;
   margin: 0;
+}
+@media all and (max-width: 500px) {
+  .itineraryName {
+    font-size: 17px;
+  }
 }
 
 .itineraryText {
@@ -149,6 +181,12 @@
   border-left: 4px solid #eee;
   margin-left: 28px;
   text-align: justify;
+}
+@media all and (max-width: 500px) {
+  .itineraryText {
+    padding-left: 36px;
+    margin-left: 23px;
+  }
 }
 @media all and (max-width: 900px) {
   .itineraryText {
@@ -162,6 +200,7 @@
 .itineraryItem:hover .itineraryText {
   border-left-color: #0c77855d;
 }
+
 
 .previousPost {
   margin-bottom: 30px;

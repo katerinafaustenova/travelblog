@@ -64,6 +64,15 @@
   border-radius: 50%;
   margin: 0;
 }
+@media all and (max-width: 500px) {
+  .headerHome .headerContent > a {
+    padding: 10px;
+  }
+  .headerHome .headerContent > a > img {
+    width: 18px;
+    height: 18px;
+  }
+}
 
 .headerHome .headerContent > a:hover {
   background-color: #0b525c;
