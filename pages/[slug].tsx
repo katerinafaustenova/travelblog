@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Base from "../components/Base";
+import { Gallery } from "../components/Gallery";
 import { Portal } from "../components/Portal";
 import styles from "../styles/Slug.module.css";
 import { getCzechCountryName } from "../utils/getCzechCountryName";
@@ -97,8 +98,7 @@ export async function getStaticProps({ params }: any) {
 }
 
 export default function PostDetail({ post, sluglist }: any) {
-
-  const [modalState, setModalState] = useState(false);
+  const [modalState, setModalState] = useState({open:false, chosenId: "" });
 
   useEffect(() => {
     if (typeof window !== undefined) {
@@ -146,7 +146,6 @@ export default function PostDetail({ post, sluglist }: any) {
             </h3>
           </div>
         )}
-        <button onClick={()=>setModalState(false)}>here open modal</button>
         <div className={styles.info}>
           <span className={styles.category}>
             {`${getCzechCountryName(
@@ -166,7 +165,7 @@ export default function PostDetail({ post, sluglist }: any) {
           <Image
             src={image.url}
             alt={image.title || image.fileName}
-            onClick={()=> setModalState(true)}
+            onClick={() => setModalState({ open: true, chosenId: image.id })}
             fill
             priority
             sizes="(max-width: 900px) 100vw, 70vw"
@@ -197,6 +196,7 @@ export default function PostDetail({ post, sluglist }: any) {
                               <Image
                                 src={url}
                                 alt={title || fileName}
+                                onClick={() => setModalState({ open: true, chosenId: id })}
                                 fill
                                 sizes="(max-width: 700px) 100vw, 50vw"
                               />
@@ -252,30 +252,11 @@ export default function PostDetail({ post, sluglist }: any) {
           </div>
         )}
       </section>
-      {modalState ? <Portal isOpen={() => console.log('zavri se')}>
-        <div>
-          obrazky
-          {/* {allImages.map(
-            ({ id, url, title, fileName, width, height }: any) => {
-              const paddingRatio = (height / width) * 100;
-              return (
-                <div key={id} className={styles.wysiwygImageFlex}>
-                  <div
-                    className={styles.wysiwygImageWrapper}
-                    style={{ paddingBottom: `${paddingRatio}%` }}
-                  >
-                    <Image
-                      src={url}
-                      alt={title || fileName}
-                      fill
-                      sizes="(max-width: 700px) 100vw, 50vw"
-                    />
-                  </div>
-                </div>
-              );
-            }
-          )} */}
-        </div>
+      {modalState?.open ? <Portal closeHandler={() => setModalState({ ...modalState, open: false })}>
+          <Gallery
+            images={allImages}
+            chosenId={modalState.chosenId}>
+          </Gallery>
       </Portal> : null }
     </Base>
   );

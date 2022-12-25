@@ -15,8 +15,25 @@
 .content {
     background-color: white;
     display: flex;
-    padding: 40px;
-    width: 90vw;
-    height: 85vh;
+    padding: 20px 20px;
+    width: 95vw;
+    height: 95vh;
     border-radius: 20px;
+    position: relative;
+    flex-direction: column;
+}
+.close {
+    position: absolute;
+    z-index: 2;
+    top: 10px;
+    right: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
 }

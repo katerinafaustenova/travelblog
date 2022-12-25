@@ -3,11 +3,12 @@ import { createPortal } from 'react-dom'
 import styles from "../styles/Overlay.module.css"
 
 interface PortalProps {
-  isOpen: any,
+  closeHandler: VoidFunction,
   children: ReactNode,
 }
 
 export const Portal = (props: PortalProps) => {
+  const { children, closeHandler } = props
   
   const ref = useRef<Element | null>(null)
   const [mounted, setMounted] = useState(false)
@@ -20,8 +21,8 @@ export const Portal = (props: PortalProps) => {
   return (mounted && ref.current) ? createPortal(
     <div className={styles.overlay}>
       <div className={styles.content}>
-        <button onClick={()=> props.isOpen}>close</button>
-        {props.children}
+        <button className={styles.close} onClick={closeHandler}>X</button>
+        {children}
       </div> 
     </div>, ref.current) : null
 }

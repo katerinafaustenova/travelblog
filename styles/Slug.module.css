@@ -36,6 +36,7 @@
 
 .imageWrapper > img {
   object-fit: cover;
+  cursor: pointer;
 }
 
 .wysiwyg {

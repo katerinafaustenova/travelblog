@@ -1,0 +1,9 @@
+.gallery {
+ height: 100%;
+ position: relative;
+}
+
+.gallery img {
+ object-fit: contain;
+}
+
