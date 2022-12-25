@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import Base from "../components/Base";
 import styles from "../styles/Slug.module.css";
+import { getEscapedText } from "../utils/getEscapedCategory";
 
 const endpoint = new GraphQLClient(
   "https://api-eu-west-2.hygraph.com/v2/claqvecol6m0o01t7fp787wjw/master"
@@ -16,6 +17,7 @@ const query = gql`
       id
       date
       slug
+      country
       region
       title
       description
@@ -102,6 +104,7 @@ export default function PostDetail({ post, sluglist }: any) {
 
   const {
     date,
+    country,
     region,
     title,
     description,
@@ -119,8 +122,6 @@ export default function PostDetail({ post, sluglist }: any) {
   const nextPost = sluglist[slugIndex + 1];
   const showNextPost = sluglist[slugIndex + 2];
 
-  const escapedRegion = region.replaceAll("_", " "); // todo vyseparovat bokem, je pouzito dvakrat
-
   return (
     <Base>
       <section className={styles.content}>
@@ -135,7 +136,9 @@ export default function PostDetail({ post, sluglist }: any) {
           </div>
         )}
         <div className={styles.info}>
-          <span className={styles.category}>{escapedRegion}</span>
+          <span className={styles.category}>
+            {`${getEscapedText(country, "_")} - ${getEscapedText(region, "_")}`}
+          </span>
           <time className={styles.date}>
             {format(new Date(date), "dd.MM.yyyy")}
           </time>
