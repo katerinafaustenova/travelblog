@@ -1,10 +1,7 @@
 import { gql, GraphQLClient } from "graphql-request";
-import React from "react";
 import Base from "../components/Base";
 import Post from "../components/Post";
 import styles from "../styles/Home.module.css";
-import { getCzechCountryName } from "../utils/getCzechCountryName";
-import { getEscapedText } from "../utils/getEscapedText";
 
 const endpoint = new GraphQLClient(
   "https://api-eu-west-2.hygraph.com/v2/claqvecol6m0o01t7fp787wjw/master"
@@ -43,13 +40,18 @@ export default function Home({ posts }: any) {
   if (!posts) return null;
 
   const newPosts = posts.slice(0, posts.length - 1);
-  const allCountries = newPosts.map(({ country }: any) => country);
-  const uniqueCountries = Array.from(new Set(allCountries));
+  // const allCountries = newPosts.map(({ country }: any) => country);
+  // const uniqueCountries = Array.from(new Set(allCountries));
 
   return (
     <Base>
       <section className={styles.content}>
-        {uniqueCountries.map((country: any, idx) => {
+        <div className={styles.posts}>
+          {newPosts.map((post: any, idx: number) => {
+            return <Post post={post} key={idx} />;
+          })}
+        </div>
+        {/* {uniqueCountries.map((country: any, idx) => {
           return (
             <React.Fragment key={idx}>
               <h2 className={styles.sectionTitle}>
@@ -64,7 +66,7 @@ export default function Home({ posts }: any) {
               </div>
             </React.Fragment>
           );
-        })}
+        })} */}
       </section>
     </Base>
   );

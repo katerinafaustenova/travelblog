@@ -34,6 +34,7 @@
 }
 
 .image {
+  object-fit: cover;
   transform: scale(1.3);
 }
 
@@ -41,24 +42,36 @@
   padding: 0px 20px 10px;
 }
 
-.categoryDate {
+.date {
+  display: block;
+  font-size: 14px;
   color: rgb(90, 90, 90);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  text-align: right;
   margin-bottom: 10px;
-  font-size: 13px;
 }
 
 .location {
- background-color: #0a7a84;
- color: white;
- padding: 4px 8px;
- border-radius: 5px;
- font-weight: 600;
+  font-size: 14px;
+  color: rgb(90, 90, 90);
+  margin-bottom: 12px;
+}
+
+.country, .region {
+  display: inline-block;
+  font-size: 14px;
+  background-color: #07555c;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+
+.country {
+  background-color: #0a7a84;
+  margin-right: 10px;
 }
 
 .title {
+  font-size: 20px;
   margin: 0 0 10px;
 }
 
