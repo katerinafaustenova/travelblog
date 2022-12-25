@@ -64,6 +64,10 @@
   justify-content: center;
 }
 
+.wysiwygImages + .wysiwygImages  {
+  margin-top: 20px;
+}
+
 .wysiwygImageFlex {
   position: relative;
   flex: calc(50% - 10px) 0;
