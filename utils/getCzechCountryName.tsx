@@ -9,7 +9,7 @@ export const countries = [
   },
 ];
 
-export const getCzechCountryName = (country: string) => {
+export const getCzechCountryName = (country: string | null) => {
   const newCountry = countries.find((item) => item.value === country)?.label;
   return newCountry || country;
 };
