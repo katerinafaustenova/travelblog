@@ -2,8 +2,9 @@ import { format } from "date-fns";
 import { gql, GraphQLClient } from "graphql-request";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Base from "../components/Base";
+import { Portal } from "../components/Portal";
 import styles from "../styles/Slug.module.css";
 import { getCzechCountryName } from "../utils/getCzechCountryName";
 import { getEscapedText } from "../utils/getEscapedText";
@@ -23,9 +24,12 @@ const query = gql`
       title
       description
       image {
+        id
         url
         title
         fileName
+        width
+        height
       }
       contentWithImages {
         ... on ContentWithImages {
@@ -93,6 +97,9 @@ export async function getStaticProps({ params }: any) {
 }
 
 export default function PostDetail({ post, sluglist }: any) {
+
+  const [modalState, setModalState] = useState(false);
+
   useEffect(() => {
     if (typeof window !== undefined) {
       document?.querySelectorAll("p:empty").forEach((x) => {
@@ -123,6 +130,9 @@ export default function PostDetail({ post, sluglist }: any) {
   const nextPost = sluglist[slugIndex + 1];
   const showNextPost = sluglist[slugIndex + 2];
 
+  const allImages = contentWithImages?.map(({ images }: any) => images)?.flat()
+  allImages.unshift(image)
+
   return (
     <Base>
       <section className={styles.content}>
@@ -136,6 +146,7 @@ export default function PostDetail({ post, sluglist }: any) {
             </h3>
           </div>
         )}
+        <button onClick={()=>setModalState(false)}>here open modal</button>
         <div className={styles.info}>
           <span className={styles.category}>
             {`${getCzechCountryName(
@@ -155,6 +166,7 @@ export default function PostDetail({ post, sluglist }: any) {
           <Image
             src={image.url}
             alt={image.title || image.fileName}
+            onClick={()=> setModalState(true)}
             fill
             priority
             sizes="(max-width: 900px) 100vw, 70vw"
@@ -240,6 +252,31 @@ export default function PostDetail({ post, sluglist }: any) {
           </div>
         )}
       </section>
+      {modalState ? <Portal isOpen={() => console.log('zavri se')}>
+        <div>
+          obrazky
+          {/* {allImages.map(
+            ({ id, url, title, fileName, width, height }: any) => {
+              const paddingRatio = (height / width) * 100;
+              return (
+                <div key={id} className={styles.wysiwygImageFlex}>
+                  <div
+                    className={styles.wysiwygImageWrapper}
+                    style={{ paddingBottom: `${paddingRatio}%` }}
+                  >
+                    <Image
+                      src={url}
+                      alt={title || fileName}
+                      fill
+                      sizes="(max-width: 700px) 100vw, 50vw"
+                    />
+                  </div>
+                </div>
+              );
+            }
+          )} */}
+        </div>
+      </Portal> : null }
     </Base>
   );
 }
