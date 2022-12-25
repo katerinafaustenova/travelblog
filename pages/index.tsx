@@ -3,7 +3,8 @@ import React from "react";
 import Base from "../components/Base";
 import Post from "../components/Post";
 import styles from "../styles/Home.module.css";
-import { getEscapedText } from "../utils/getEscapedCategory";
+import { getCzechCountryName } from "../utils/getCzechCountryName";
+import { getEscapedText } from "../utils/getEscapedText";
 
 const endpoint = new GraphQLClient(
   "https://api-eu-west-2.hygraph.com/v2/claqvecol6m0o01t7fp787wjw/master"
@@ -52,7 +53,7 @@ export default function Home({ posts }: any) {
           return (
             <React.Fragment key={idx}>
               <h2 className={styles.sectionTitle}>
-                {getEscapedText(country, "_")}
+                {getCzechCountryName(getEscapedText(country, "_"))}
               </h2>
               <div className={styles.posts}>
                 {newPosts

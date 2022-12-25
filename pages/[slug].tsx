@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useEffect } from "react";
 import Base from "../components/Base";
 import styles from "../styles/Slug.module.css";
-import { getEscapedText } from "../utils/getEscapedCategory";
+import { getCzechCountryName } from "../utils/getCzechCountryName";
+import { getEscapedText } from "../utils/getEscapedText";
 
 const endpoint = new GraphQLClient(
   "https://api-eu-west-2.hygraph.com/v2/claqvecol6m0o01t7fp787wjw/master"
@@ -137,7 +138,9 @@ export default function PostDetail({ post, sluglist }: any) {
         )}
         <div className={styles.info}>
           <span className={styles.category}>
-            {`${getEscapedText(country, "_")} - ${getEscapedText(region, "_")}`}
+            {`${getCzechCountryName(
+              getEscapedText(country, "_")
+            )} - ${getEscapedText(region, "_")}`}
           </span>
           <time className={styles.date}>
             {format(new Date(date), "dd.MM.yyyy")}
