@@ -1,5 +1,4 @@
 import { gql, GraphQLClient } from "graphql-request";
-import React from "react";
 import Base from "../components/Base";
 import Post from "../components/Post";
 import styles from "../styles/Home.module.css";
@@ -14,7 +13,7 @@ const query = gql`
       id
       date
       slug
-      category
+      region
       title
       description
       image {
@@ -40,20 +39,20 @@ export default function Home({ posts }: any) {
   if (!posts) return null;
 
   const newPosts = posts.slice(0, posts.length - 1);
-  const allCategories = newPosts.map(({ category }: any) => category);
-  const uniqueCategories = Array.from(new Set(allCategories));
+  const allRegions = newPosts.map(({ region }: any) => region);
+  const uniqueRegions = Array.from(new Set(allRegions));
 
   return (
     <Base>
       <section className={styles.content}>
-        {/* {uniqueCategories.map((category: any, idx) => {
-          const escapedCategory = category.replaceAll("_", " ");
+        {/* {uniqueRegions.map((region: any, idx) => {
+          const escapedRegion = region.replaceAll("_", " ");
           return (
             <React.Fragment key={idx}>
-              <h2 className={styles.sectionTitle}>{escapedCategory}</h2>
+              <h2 className={styles.sectionTitle}>{escapedRegion}</h2>
               <div className={styles.posts}>
                 {newPosts
-                  .filter((post: any) => post.category === category)
+                  .filter((post: any) => post.region === region)
                   .map((post: any, idx: number) => {
                     return <Post post={post} key={idx} />;
                   })}
@@ -64,11 +63,10 @@ export default function Home({ posts }: any) {
         <h2 className={styles.sectionTitle}>Indonésie</h2>
         <div className={styles.posts}>
           {newPosts.map((post: any, idx: number) => {
-              return <Post post={post} key={idx} />;
-          }
-          )}
+            return <Post post={post} key={idx} />;
+          })}
         </div>
-      </section> 
+      </section>
     </Base>
   );
 }

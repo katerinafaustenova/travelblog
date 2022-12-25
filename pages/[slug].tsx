@@ -16,7 +16,7 @@ const query = gql`
       id
       date
       slug
-      category
+      region
       title
       description
       image {
@@ -102,7 +102,7 @@ export default function PostDetail({ post, sluglist }: any) {
 
   const {
     date,
-    category,
+    region,
     title,
     description,
     image,
@@ -119,7 +119,7 @@ export default function PostDetail({ post, sluglist }: any) {
   const nextPost = sluglist[slugIndex + 1];
   const showNextPost = sluglist[slugIndex + 2];
 
-  const escapedCategory = category.replaceAll("_", " ");// todo vyseparovat bokem, je pouzito dvakrat
+  const escapedRegion = region.replaceAll("_", " "); // todo vyseparovat bokem, je pouzito dvakrat
 
   return (
     <Base>
@@ -135,7 +135,7 @@ export default function PostDetail({ post, sluglist }: any) {
           </div>
         )}
         <div className={styles.info}>
-          <span className={styles.category}>{escapedCategory}</span>
+          <span className={styles.category}>{escapedRegion}</span>
           <time className={styles.date}>
             {format(new Date(date), "dd.MM.yyyy")}
           </time>

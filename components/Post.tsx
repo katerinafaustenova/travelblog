@@ -6,8 +6,8 @@ import styles from "../styles/Post.module.css";
 export default function Post({ post }: any) {
   if (!post) return null;
 
-  const { slug, date, title, description, image, category } = post;
-  const escapedCategory = category.replaceAll("_", " "); // todo vyseparovat bokem, je pouzito dvakrat
+  const { slug, date, title, description, image, region } = post;
+  const escapedRegion = region.replaceAll("_", " "); // todo vyseparovat bokem, je pouzito dvakrat
   return (
     <div className={styles.post}>
       <Link href={slug} className={styles.link}>
@@ -25,9 +25,7 @@ export default function Post({ post }: any) {
         </div>
         <div className={styles.content}>
           <div className={styles.categoryDate}>
-            <div className={styles.location}>
-              {escapedCategory}
-            </div>
+            <div className={styles.location}>{escapedRegion}</div>
             <time className={styles.date}>
               {format(new Date(date), "dd.MM.yyyy")}
             </time>
