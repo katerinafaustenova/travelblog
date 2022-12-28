@@ -1,9 +1,35 @@
 .gallery {
- height: 100%;
- position: relative;
+  height: 100%;
+  position: relative;
 }
 
-.gallery img {
- object-fit: contain;
+.gallery > img {
+  object-fit: contain;
 }
 
+.left, .right {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 60px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: white;
+  text-shadow: 0px 0px 10px #000000;
+}
+
+.left:hover, .right:hover {
+  background-color: #00000085;
+} 
+
+.left {
+  left: 0px;
+  padding: 5px 20px 5px 15px;
+}
+
+.right {
+  right: 0px;
+  padding: 5px 15px 5px 20px;
+}

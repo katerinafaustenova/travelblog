@@ -98,7 +98,7 @@ export async function getStaticProps({ params }: any) {
 }
 
 export default function PostDetail({ post, sluglist }: any) {
-  const [modalState, setModalState] = useState({open:false, chosenId: "" });
+  const [modalState, setModalState] = useState({open: false, chosenId: "" });
 
   useEffect(() => {
     if (typeof window !== undefined) {
@@ -255,7 +255,7 @@ export default function PostDetail({ post, sluglist }: any) {
       {modalState?.open ? <Portal closeHandler={() => setModalState({ ...modalState, open: false })}>
           <Gallery
             images={allImages}
-            chosenId={modalState.chosenId}>
+            chosenId={modalState?.chosenId}>
           </Gallery>
       </Portal> : null }
     </Base>
