@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Script
         strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_ANALYTICS_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=G-YE1QKWW14V`}
       />
       <Script
         id="google-analytics"
@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', ${process.env.NEXT_PUBLIC_ANALYTICS_ID}, {
+            gtag('config', 'G-YE1QKWW14V', {
             page_path: window.location.pathname,
             });
           `,
