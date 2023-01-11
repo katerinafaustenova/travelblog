@@ -38,7 +38,7 @@ const query = gql`
           content {
             html
           }
-          images {
+          images(first: 100) {
             id
             url
             title
