@@ -49,7 +49,7 @@ const query = gql`
         }
       }
       map
-      itinerary_item_ref {
+      itinerary_item_ref(first: 100) {
         ... on Itinerary_item_for_post {
           id
           date
@@ -98,7 +98,7 @@ export async function getStaticProps({ params }: any) {
 }
 
 export default function PostDetail({ post, sluglist }: any) {
-  const [modalState, setModalState] = useState({open: false, chosenId: "" });
+  const [modalState, setModalState] = useState({ open: false, chosenId: "" });
 
   useEffect(() => {
     if (typeof window !== undefined) {
@@ -130,8 +130,8 @@ export default function PostDetail({ post, sluglist }: any) {
   const nextPost = sluglist[slugIndex + 1];
   const showNextPost = sluglist[slugIndex + 2];
 
-  const allImages = contentWithImages?.map(({ images }: any) => images)?.flat()
-  allImages.unshift(image)
+  const allImages = contentWithImages?.map(({ images }: any) => images)?.flat();
+  allImages.unshift(image);
 
   return (
     <Base>
@@ -196,7 +196,9 @@ export default function PostDetail({ post, sluglist }: any) {
                               <Image
                                 src={url}
                                 alt={title || fileName}
-                                onClick={() => setModalState({ open: true, chosenId: id })}
+                                onClick={() =>
+                                  setModalState({ open: true, chosenId: id })
+                                }
                                 fill
                                 sizes="(max-width: 700px) 100vw, 50vw"
                               />
@@ -252,12 +254,13 @@ export default function PostDetail({ post, sluglist }: any) {
           </div>
         )}
       </section>
-      {modalState?.open ? <Portal closeHandler={() => setModalState({ ...modalState, open: false })}>
-          <Gallery
-            images={allImages}
-            chosenId={modalState?.chosenId}>
-          </Gallery>
-      </Portal> : null }
+      {modalState?.open ? (
+        <Portal
+          closeHandler={() => setModalState({ ...modalState, open: false })}
+        >
+          <Gallery images={allImages} chosenId={modalState?.chosenId}></Gallery>
+        </Portal>
+      ) : null}
     </Base>
   );
 }
