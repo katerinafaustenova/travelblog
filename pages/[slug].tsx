@@ -254,7 +254,7 @@ export default function PostDetail({ post, sluglist }: any) {
           </div>
         )}
       </section>
-      {modalState?.open ? (
+      {modalState?.open && allImages ? (
         <Portal
           closeHandler={() => setModalState({ ...modalState, open: false })}
         >
