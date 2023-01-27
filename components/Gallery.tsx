@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/Gallery.module.css";
 
 interface ImagesProps {
@@ -21,6 +21,23 @@ export const Gallery = ({ images, chosenId }: GalleryProps) => {
 
   const firstPosition = activeIndex === 0;
   const lastPosition = activeIndex + 1 === images.length;
+
+  const handleKeyDown = (e: any) => {
+    if (e.keyCode === 37 && !firstPosition) {
+      setActiveIndex(activeIndex - 1);
+    }
+    if (e.keyCode === 39 && !lastPosition) {
+      setActiveIndex(activeIndex + 1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  });
 
   return (
     <div className={styles.gallery}>
