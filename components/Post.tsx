@@ -22,6 +22,7 @@ export default function Post({ post }: any) {
               (max-width: 800px) 50vw,
               33vw"
             className={styles.image}
+            priority
           />
         </div>
         <div className={styles.content}>
