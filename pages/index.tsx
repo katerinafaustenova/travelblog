@@ -3,14 +3,13 @@ import Base from "../components/Base";
 import Post from "../components/Post";
 import styles from "../styles/Home.module.css";
 
-
 const endpoint = new GraphQLClient(
   "https://api-eu-west-2.hygraph.com/v2/claqvecol6m0o01t7fp787wjw/master"
 );
 
 const query = gql`
   {
-    posts(orderBy: date_ASC) {
+    posts(orderBy: date_ASC, first: 100) {
       id
       date
       slug
@@ -57,8 +56,8 @@ export default function Home({ posts }: any) {
   );
 }
 
-
-{/* {uniqueCategories.map((category: any, idx) => {
+{
+  /* {uniqueCategories.map((category: any, idx) => {
   const escapedCategory = category.replaceAll("_", " ");
   return (
     <React.Fragment key={idx}>
@@ -72,4 +71,5 @@ export default function Home({ posts }: any) {
       </div>
     </React.Fragment>
   );
-})}*/}
+})}*/
+}
