@@ -63,7 +63,7 @@ const query = gql`
 
 const sluglistQuery = gql`
   {
-    posts {
+    posts(first: 100) {
       slug
       title
     }
