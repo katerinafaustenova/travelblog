@@ -9,6 +9,7 @@ import { Portal } from "../components/Portal";
 import styles from "../styles/Slug.module.css";
 import { getCzechCountryName } from "../utils/getCzechCountryName";
 import { getEscapedText } from "../utils/getEscapedText";
+import { processNbsp } from "../utils/processNbsp";
 
 const endpoint = new GraphQLClient(
   "https://api-eu-west-2.hygraph.com/v2/claqvecol6m0o01t7fp787wjw/master"
@@ -159,7 +160,9 @@ export default function PostDetail({ post, sluglist }: any) {
         <h2 className={styles.title}>{title}</h2>
         <p
           className={styles.perex}
-          dangerouslySetInnerHTML={{ __html: description }}
+          dangerouslySetInnerHTML={{
+            __html: processNbsp(description) || description,
+          }}
         />
         <div className={styles.imageWrapper}>
           <Image
@@ -174,11 +177,15 @@ export default function PostDetail({ post, sluglist }: any) {
         {contentWithImages?.length > 0 &&
           contentWithImages.map(({ content, images }: any) => {
             const escapedContent = content?.html?.replaceAll("amp;", "");
+            const processedContent =
+              processNbsp(escapedContent) || escapedContent;
             return (
               <>
                 {escapedContent && (
                   <div
-                    dangerouslySetInnerHTML={{ __html: escapedContent }}
+                    dangerouslySetInnerHTML={{
+                      __html: processedContent,
+                    }}
                     className={styles.wysiwyg}
                   />
                 )}
@@ -222,19 +229,21 @@ export default function PostDetail({ post, sluglist }: any) {
           <>
             <h3 className={styles.itineraryTitle}>Itinerář:</h3>
             {itinerary_item_ref.map(({ id, title, date, text }: any) => {
+              const processedTitle = processNbsp(title) || title;
+              const processedText = processNbsp(text) || text;
               return (
                 <div key={id} className={styles.itineraryItem}>
                   <div className={styles.itineraryHeader}>
                     <time className={styles.itineraryDate}>
                       {format(new Date(date), "dd.MM")}
                     </time>
-                    <h5 className={styles.itineraryName}>{title}</h5>
+                    <h5 className={styles.itineraryName}>{processedTitle}</h5>
                   </div>
                   <div className={styles.itineraryContent}>
-                    {text && (
+                    {processedText && (
                       <p
                         className={styles.itineraryText}
-                        dangerouslySetInnerHTML={{ __html: text }}
+                        dangerouslySetInnerHTML={{ __html: processedText }}
                       />
                     )}
                   </div>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import styles from "../styles/Post.module.css";
 import { getCzechCountryName } from "../utils/getCzechCountryName";
 import { getEscapedText } from "../utils/getEscapedText";
+import { processNbsp } from "../utils/processNbsp";
 
 export default function Post({ post }: any) {
   if (!post) return null;
@@ -38,7 +39,9 @@ export default function Post({ post }: any) {
           <h2 className={styles.title}>{title}</h2>
           <p
             className={styles.perex}
-            dangerouslySetInnerHTML={{ __html: description }}
+            dangerouslySetInnerHTML={{
+              __html: processNbsp(description) || description,
+            }}
           />
         </div>
       </Link>
