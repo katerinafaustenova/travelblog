@@ -10,6 +10,7 @@ import styles from "../styles/Slug.module.css";
 import { getCzechCountryName } from "../utils/getCzechCountryName";
 import { getEscapedText } from "../utils/getEscapedText";
 import { processNbsp } from "../utils/processNbsp";
+import classNames from 'classnames'
 
 const endpoint = new GraphQLClient(
   "https://api-eu-west-2.hygraph.com/v2/claqvecol6m0o01t7fp787wjw/master"
@@ -194,8 +195,13 @@ export default function PostDetail({ post, sluglist }: any) {
                     {images.map(
                       ({ id, url, title, fileName, width, height }: any) => {
                         const paddingRatio = (height / width) * 100;
+                        const isAlone = images.length === 1 
                         return (
-                          <div key={id} className={styles.wysiwygImageFlex}>
+                          <div key={id}
+                            className={classNames(
+                              styles.wysiwygImageFlex,
+                              isAlone && styles.isAlone
+                            )}>
                             <div
                               className={styles.wysiwygImageWrapper}
                               style={{ paddingBottom: `${paddingRatio}%` }}

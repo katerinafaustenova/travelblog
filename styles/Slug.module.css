@@ -75,6 +75,11 @@
   width: calc(50% - 10px);
 }
 
+.isAlone {
+  flex: 100% 0;
+  width: 100%;
+}
+
 @media all and (max-width: 700px) {
   .wysiwygImageFlex {
     flex: 100% 0;
