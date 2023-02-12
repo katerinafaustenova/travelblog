@@ -32,7 +32,7 @@ const query = gql`
         width
         height
       }
-      contentWithImages {
+      contentWithImages(first: 100) {
         ... on ContentWithImages {
           id
           content {
