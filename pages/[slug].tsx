@@ -1,16 +1,9 @@
-import { format } from "date-fns";
 import { gql, GraphQLClient } from "graphql-request";
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Base from "../components/Base";
-import { Gallery } from "../components/Gallery";
-import { Portal } from "../components/Portal";
+import PostDetail from "../components/PostDetail";
 import styles from "../styles/Slug.module.css";
-import { getCzechCountryName } from "../utils/getCzechCountryName";
-import { getEscapedText } from "../utils/getEscapedText";
-import { processNbsp } from "../utils/processNbsp";
-import classNames from 'classnames'
 
 const endpoint = new GraphQLClient(
   "https://api-eu-west-2.hygraph.com/v2/claqvecol6m0o01t7fp787wjw/master"
@@ -99,9 +92,7 @@ export async function getStaticProps({ params }: any) {
   };
 }
 
-export default function PostDetail({ post, sluglist }: any) {
-  const [modalState, setModalState] = useState({ open: false, chosenId: "" });
-
+export default function PostItem({ post, sluglist }: any) {
   useEffect(() => {
     if (typeof window !== undefined) {
       document?.querySelectorAll("p:empty").forEach((x) => {
@@ -112,18 +103,7 @@ export default function PostDetail({ post, sluglist }: any) {
 
   if (!post) return null;
 
-  const {
-    date,
-    country,
-    region,
-    title,
-    description,
-    image,
-    contentWithImages,
-    map,
-    itinerary_item_ref,
-    slug,
-  } = post;
+  const { slug } = post;
 
   const slugIndex = sluglist.findIndex(
     (slugItem: any) => slugItem.slug === slug
@@ -131,9 +111,6 @@ export default function PostDetail({ post, sluglist }: any) {
   const prevPost = sluglist[slugIndex - 1];
   const nextPost = sluglist[slugIndex + 1];
   const showNextPost = sluglist[slugIndex + 2];
-
-  const allImages = contentWithImages?.map(({ images }: any) => images)?.flat();
-  allImages.unshift(image);
 
   return (
     <Base>
@@ -148,116 +125,7 @@ export default function PostDetail({ post, sluglist }: any) {
             </h3>
           </div>
         )}
-        <div className={styles.info}>
-          <span className={styles.category}>
-            {`${getCzechCountryName(
-              getEscapedText(country, "_")
-            )} - ${getEscapedText(region, "_")}`}
-          </span>
-          <time className={styles.date}>
-            {format(new Date(date), "dd.MM.yyyy")}
-          </time>
-        </div>
-        <h2 className={styles.title}>{title}</h2>
-        <p
-          className={styles.perex}
-          dangerouslySetInnerHTML={{
-            __html: processNbsp(description) || description,
-          }}
-        />
-        <div className={styles.imageWrapper}>
-          <Image
-            src={image.url}
-            alt={image.title || image.fileName}
-            onClick={() => setModalState({ open: true, chosenId: image.id })}
-            fill
-            priority
-            sizes="(max-width: 900px) 100vw, 70vw"
-          />
-        </div>
-        {contentWithImages?.length > 0 &&
-          contentWithImages.map(({ content, images }: any) => {
-            const escapedContent = content?.html?.replaceAll("amp;", "");
-            const processedContent =
-              processNbsp(escapedContent) || escapedContent;
-            return (
-              <>
-                {escapedContent && (
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: processedContent,
-                    }}
-                    className={styles.wysiwyg}
-                  />
-                )}
-                {images?.length > 0 && (
-                  <div className={styles.wysiwygImages}>
-                    {images.map(
-                      ({ id, url, title, fileName, width, height }: any) => {
-                        const paddingRatio = (height / width) * 100;
-                        const isAlone = images.length === 1 
-                        return (
-                          <div key={id}
-                            className={classNames(
-                              styles.wysiwygImageFlex,
-                              isAlone && styles.isAlone
-                            )}>
-                            <div
-                              className={styles.wysiwygImageWrapper}
-                              style={{ paddingBottom: `${paddingRatio}%` }}
-                            >
-                              <Image
-                                src={url}
-                                alt={title || fileName}
-                                onClick={() =>
-                                  setModalState({ open: true, chosenId: id })
-                                }
-                                fill
-                                sizes="(max-width: 700px) 100vw, 50vw"
-                              />
-                            </div>
-                          </div>
-                        );
-                      }
-                    )}
-                  </div>
-                )}
-              </>
-            );
-          })}
-        {map && (
-          <div
-            className={styles.mapContainer}
-            dangerouslySetInnerHTML={{ __html: map }}
-          />
-        )}
-        {itinerary_item_ref && (
-          <>
-            <h3 className={styles.itineraryTitle}>Itinerář:</h3>
-            {itinerary_item_ref.map(({ id, title, date, text }: any) => {
-              const processedTitle = processNbsp(title) || title;
-              const processedText = processNbsp(text) || text;
-              return (
-                <div key={id} className={styles.itineraryItem}>
-                  <div className={styles.itineraryHeader}>
-                    <time className={styles.itineraryDate}>
-                      {format(new Date(date), "dd.MM")}
-                    </time>
-                    <h5 className={styles.itineraryName}>{processedTitle}</h5>
-                  </div>
-                  <div className={styles.itineraryContent}>
-                    {processedText && (
-                      <p
-                        className={styles.itineraryText}
-                        dangerouslySetInnerHTML={{ __html: processedText }}
-                      />
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </>
-        )}
+        <PostDetail post={post} />
         {nextPost && showNextPost && (
           <div className={styles.nextPost}>
             <h3>
@@ -269,13 +137,6 @@ export default function PostDetail({ post, sluglist }: any) {
           </div>
         )}
       </section>
-      {modalState?.open && allImages ? (
-        <Portal
-          closeHandler={() => setModalState({ ...modalState, open: false })}
-        >
-          <Gallery images={allImages} chosenId={modalState?.chosenId}></Gallery>
-        </Portal>
-      ) : null}
     </Base>
   );
 }

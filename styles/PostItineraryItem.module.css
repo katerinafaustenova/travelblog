@@ -1,0 +1,79 @@
+.itineraryTitle {
+  margin: 50px 0 35px;
+  text-align: center;
+}
+
+.itineraryItem {
+  margin-bottom: 20px;
+}
+
+.itineraryHeader {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding-bottom: 15px;
+}
+@media all and (max-width: 900px) {
+  .itineraryHeader {
+    padding-bottom: 0px;
+  }
+}
+
+.itineraryDate {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #0c7785;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 30px;
+}
+@media all and (max-width: 500px) {
+  .itineraryDate {
+    width: 48px;
+    height: 48px;
+    font-size: 13px;
+    margin-right: 15px;
+  }
+}
+
+.itineraryName {
+  font-size: 18px;
+  line-height: 30px;
+  margin: 0;
+}
+@media all and (max-width: 500px) {
+  .itineraryName {
+    font-size: 17px;
+  }
+}
+
+.itineraryText {
+  padding-left: 58px;
+  border-left: 4px solid #eee;
+  margin-left: 28px;
+  text-align: justify;
+}
+@media all and (max-width: 500px) {
+  .itineraryText {
+    padding-left: 36px;
+    margin-left: 23px;
+  }
+}
+@media all and (max-width: 900px) {
+  .itineraryText {
+    margin-top: 20px;
+  }
+}
+
+.itineraryItem:hover .itineraryDate {
+  background-color: #0b525c;
+}
+.itineraryItem:hover .itineraryText {
+  border-left-color: #0c77855d;
+}

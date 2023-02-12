@@ -1,0 +1,70 @@
+.wysiwyg {
+  text-align: justify;
+  margin: 25px 0;
+}
+
+.wysiwyg > h3,
+.wysiwyg > h4 {
+  text-align: center;
+  padding: 25px 0;
+}
+
+.wysiwyg > p {
+  margin-bottom: 15px;
+}
+
+.wysiwyg > p:last-child {
+  margin-bottom: 0;
+}
+
+.wysiwygImages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.wysiwygImages + .wysiwygImages {
+  margin-top: 20px;
+}
+
+.wysiwygImageFlex {
+  position: relative;
+  flex: calc(50% - 10px) 0;
+  width: calc(50% - 10px);
+}
+
+.isAlone {
+  flex: 100% 0;
+  width: 100%;
+}
+
+@media all and (max-width: 700px) {
+  .wysiwygImageFlex {
+    flex: 100% 0;
+    width: 100%;
+  }
+}
+
+.wysiwygImageWrapper {
+  width: 100%;
+}
+
+.wysiwygImageWrapper > img:hover {
+  cursor: pointer;
+}
+
+@media all and (max-width: 400px) {
+  .wysiwyg > iframe {
+    width: 100%;
+    max-width: 900px;
+    height: 195px;
+  }
+}
+@media all and (min-width: 401px) and (max-width: 900px) {
+  .wysiwyg > iframe {
+    width: 100%;
+    max-width: 900px;
+    height: 300px;
+  }
+}

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Base from "../components/Base";
-import styles from "../styles/Slug.module.css";
+import styles from "../styles/Admin.module.css";
 
 const images = [
   {
@@ -35,11 +35,9 @@ const images = [
     title: "terminal v číně 2",
     // url: "https://media.graphassets.com/PpwKxWcfSp2BiTqZoHy7",
   },
-]
+];
 
-
-
-export default function Admin({  }: any) {
+export default function Admin({}: any) {
   return (
     <Base>
       <section className={styles.content}>
@@ -47,16 +45,17 @@ export default function Admin({  }: any) {
         <p className={styles.perex}>panglao</p>
         {/* <img src="https://faustenova.cz/assets/img/macbook.png"></img> */}
         {images.map((image): any => {
-          return (<div key={image.id} className={styles.imgWrapper}>
-            <Image
-              src={`https://faustenova.cz/travelblog/assets/panglao/${image.fileName}`}
-              alt={image.title}
-              fill
-              priority
-              sizes="(max-width: 900px) 100vw, 70vw"
-            />
+          return (
+            <div key={image.id} className={styles.imgWrapper}>
+              <Image
+                src={`https://faustenova.cz/travelblog/assets/panglao/${image.fileName}`}
+                alt={image.title}
+                fill
+                priority
+                sizes="(max-width: 900px) 100vw, 70vw"
+              />
             </div>
-          )
+          );
         })}
       </section>
     </Base>

@@ -1,0 +1,22 @@
+.content {
+  position: relative;
+  margin-bottom: 60px;
+}
+@media all and (max-width: 1080px) {
+  .content {
+    margin-top: 60px;
+  }
+}
+
+.title {
+  margin: 0 0 20px;
+}
+
+.perex {
+  margin-bottom: 20px;
+}
+
+.imgWrapper {
+  position: relative;
+  height: 500px;
+}

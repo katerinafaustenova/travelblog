@@ -1,0 +1,54 @@
+.title {
+  margin: 0 0 20px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.category,
+.date {
+  color: rgb(90, 90, 90);
+}
+
+.perex {
+  margin-bottom: 20px;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.2%;
+  margin-bottom: 20px;
+}
+
+.imageWrapper > img {
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.mapContainer {
+  width: 900px;
+  height: 400px;
+  margin-top: 50px;
+}
+@media all and (max-width: 400px) {
+  .mapContainer {
+    height: 195px;
+    width: 100%;
+  }
+}
+@media all and (min-width: 401px) and (max-width: 900px) {
+  .mapContainer {
+    height: 300px;
+    width: 100%;
+  }
+}
+
+.mapContainer > iframe {
+  width: 100%;
+  height: 100%;
+}
