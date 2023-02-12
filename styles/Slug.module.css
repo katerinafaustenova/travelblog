@@ -228,3 +228,9 @@
 .link:hover {
   text-decoration: none;
 }
+
+/* test */
+.imgWrapper {
+  position: relative;
+  height: 500px;
+}
