@@ -41,16 +41,17 @@ export async function getStaticProps() {
 }
 
 export default function Home({ showedPosts }: any) {
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState<any[]>([]);
 
   if (!showedPosts) return null;
 
   const filteredPosts =
     selectedOptions.length === 0
       ? showedPosts
-      : showedPosts.filter(({ country }: any) =>
-          selectedOptions.map(({ value }) => value).includes(country)
-        );
+      : showedPosts.filter(({ country }: any) => {
+          const array = selectedOptions.map(({ value }) => value);
+          return array.includes(country);
+        });
 
   return (
     <Base>
