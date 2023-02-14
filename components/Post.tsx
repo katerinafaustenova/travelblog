@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,13 +7,14 @@ import { getCzechCountryName } from "../utils/getCzechCountryName";
 import { getEscapedText } from "../utils/getEscapedText";
 import { processNbsp } from "../utils/processNbsp";
 
-export default function Post({ post }: any) {
+export default function Post({ post, isNew }: any) {
   if (!post) return null;
 
   const { slug, date, title, description, image, country, region } = post;
 
   return (
     <div className={styles.post}>
+      {isNew ? <div className={styles.labelNew}>New</div>: null}
       <Link href={slug} className={styles.link}>
         <div className={styles.imageWrapper}>
           <Image

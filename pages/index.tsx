@@ -51,7 +51,7 @@ export default function Home({ showedPosts }: any) {
       : showedPosts.filter(({ country }: any) => {
           const array = selectedOptions.map(({ value }) => value);
           return array.includes(country);
-        });
+      });
 
   return (
     <Base>
@@ -62,7 +62,7 @@ export default function Home({ showedPosts }: any) {
         />
         <div className={styles.posts}>
           {filteredPosts.map((post: any, idx: number) => {
-            return <Post post={post} key={idx} />;
+            return <Post post={post} key={idx} isNew={idx + 1 === filteredPosts.length} />;
           })}
         </div>
       </section>
