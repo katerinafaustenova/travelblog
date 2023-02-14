@@ -127,17 +127,17 @@ export default function PostItem({ post, sluglist }: any) {
           </div>
         )}
         <PostDetail post={post} />
-        {nextPost && showNextPost && (
-          <div className={styles.nextPost}>
+        <div className={styles.nextPost}>
+          {nextPost && showNextPost && (
             <h3>
               Následující článek:&nbsp;
               <Link href={nextPost.slug} className={styles.link}>
                 {nextPost.title}
               </Link>
             </h3>
-          </div>
-        )}
-        <ScrollTop />
+          )}
+          <ScrollTop />
+        </div>
       </section>
     </Base>
   );

@@ -1,6 +1,6 @@
 .content {
   position: relative;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 @media all and (max-width: 1080px) {
   .content {
@@ -13,13 +13,14 @@
 }
 
 .nextPost {
-  margin-top: 60px;
-  margin-right: 60px;
+  display: flex;
+  align-items: baseline;
+  margin-top: 40px;
 }
 
 @media all and (max-width: 500px) {
   .content {
-    margin: 50px 0 40px;
+    margin: 50px 0 20px;
   }
 
   .previousPost > h3,
@@ -32,8 +33,7 @@
   }
 
   .nextPost {
-    margin-top: 40px;
-    margin-right: 45px;
+    margin-top: 20px;
   }
 }
 
