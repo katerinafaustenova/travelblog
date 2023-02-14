@@ -44,7 +44,7 @@ export default function Post({ post, isNew }: any) {
             }}
           />
         </div>
-        {isNew ? <div className={styles.labelNew}>New</div>: null}
+        {isNew ? <div className={styles.labelNew}>New</div> : null}
       </Link>
     </div>
   );

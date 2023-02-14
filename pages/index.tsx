@@ -4,6 +4,7 @@ import Base from "../components/Base";
 import MultiSelect from "../components/MultiSelect";
 import Post from "../components/Post";
 import styles from "../styles/Home.module.css";
+import { isPostNewest } from "../utils/isPostNewest";
 
 const endpoint = new GraphQLClient(
   "https://api-eu-west-2.hygraph.com/v2/claqvecol6m0o01t7fp787wjw/master"
@@ -43,8 +44,6 @@ export async function getStaticProps() {
 export default function Home({ showedPosts }: any) {
   const [selectedOptions, setSelectedOptions] = useState<any[]>([]);
 
-  const newestPostId = showedPosts[0].id
-  
   if (!showedPosts) return null;
 
   const filteredPosts =
@@ -53,7 +52,7 @@ export default function Home({ showedPosts }: any) {
       : showedPosts.filter(({ country }: any) => {
           const array = selectedOptions.map(({ value }) => value);
           return array.includes(country);
-      });
+        });
 
   return (
     <Base>
@@ -64,7 +63,13 @@ export default function Home({ showedPosts }: any) {
         />
         <div className={styles.posts}>
           {filteredPosts.map((post: any, idx: number) => {
-            return <Post post={post} key={idx} isNew={post.id === newestPostId} />;
+            return (
+              <Post
+                post={post}
+                key={idx}
+                isNew={isPostNewest(showedPosts[0].id, post.id, post.date)}
+              />
+            );
           })}
         </div>
       </section>
