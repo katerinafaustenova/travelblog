@@ -14,6 +14,27 @@
 
 .nextPost {
   margin-top: 60px;
+  margin-right: 60px;
+}
+
+@media all and (max-width: 500px) {
+  .content {
+    margin: 50px 0 40px;
+  }
+
+  .previousPost > h3,
+  .nextPost > h3 {
+    font-size: 15px;
+  }
+
+  .previousPost {
+    margin-bottom: 20px;
+  }
+
+  .nextPost {
+    margin-top: 40px;
+    margin-right: 45px;
+  }
 }
 
 .link {

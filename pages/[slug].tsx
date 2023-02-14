@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import Base from "../components/Base";
 import PostDetail from "../components/PostDetail";
+import ScrollTop from "../components/ScrollTop";
 import styles from "../styles/Slug.module.css";
 
 const endpoint = new GraphQLClient(
@@ -136,6 +137,7 @@ export default function PostItem({ post, sluglist }: any) {
             </h3>
           </div>
         )}
+        <ScrollTop />
       </section>
     </Base>
   );
