@@ -33,3 +33,10 @@ input::-moz-focus-inner {
 .link:hover {
   text-decoration: none;
 }
+
+@media all and (max-width: 600px) {
+  .react-select__control,
+  .react-select__menu {
+    width: 100% !important;
+  }
+}

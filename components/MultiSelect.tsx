@@ -1,25 +1,9 @@
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import { customStyles } from "../utils/customMultiSelectStyles";
 import { getCzechCountryName } from "../utils/getCzechCountryName";
 
 const animatedComponents = makeAnimated();
-
-const customStyles = {
-  option: (defaultStyles: any, state: any) => ({
-    ...defaultStyles,
-    color: state.isSelected ? "#212529" : "#fff",
-    backgroundColor: state.isSelected ? "#a0a0a0" : "#212529",
-  }),
-
-  control: (defaultStyles: any) => ({
-    ...defaultStyles,
-    backgroundColor: "#212529",
-    padding: "10px",
-    border: "none",
-    boxShadow: "none",
-  }),
-  singleValue: (defaultStyles: any) => ({ ...defaultStyles, color: "#fff" }),
-};
 
 function MultiSelect({ posts, setSelectedOptions }: any) {
   const uniqueCountries = Array.from(
@@ -45,6 +29,9 @@ function MultiSelect({ posts, setSelectedOptions }: any) {
       isMulti
       closeMenuOnSelect={false}
       styles={customStyles}
+      placeholder="Filtr"
+      noOptionsMessage={() => "Žádné další možnosti"}
+      classNamePrefix="react-select"
     />
   );
 }
