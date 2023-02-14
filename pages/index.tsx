@@ -6,7 +6,7 @@ import Post from "../components/Post";
 import styles from "../styles/Home.module.css";
 import { isPostNewest } from "../utils/isPostNewest";
 
-const endpoint = new GraphQLClient(
+export const endpoint = new GraphQLClient(
   "https://api-eu-west-2.hygraph.com/v2/claqvecol6m0o01t7fp787wjw/master"
 );
 
@@ -65,8 +65,8 @@ export default function Home({ showedPosts }: any) {
           {filteredPosts.map((post: any, idx: number) => {
             return (
               <Post
-                post={post}
                 key={idx}
+                post={post}
                 isNew={isPostNewest(showedPosts[0].id, post.id, post.date)}
               />
             );
@@ -75,22 +75,4 @@ export default function Home({ showedPosts }: any) {
       </section>
     </Base>
   );
-}
-
-{
-  /* {uniqueCategories.map((category: any, idx) => {
-  const escapedCategory = category.replaceAll("_", " ");
-  return (
-    <React.Fragment key={idx}>
-      <h2 className={styles.sectionTitle}>{escapedCategory}</h2>
-      <div className={styles.posts}>
-        {newPosts
-          .filter((post: any) => post.category === category)
-          .map((post: any, idx: number) => {
-            return <Post post={post} key={idx} />;
-          })}
-      </div>
-    </React.Fragment>
-  );
-})}*/
 }

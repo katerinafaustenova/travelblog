@@ -1,14 +1,11 @@
-import { gql, GraphQLClient } from "graphql-request";
+import { gql } from "graphql-request";
 import Link from "next/link";
 import { useEffect } from "react";
+import { endpoint } from ".";
 import Base from "../components/Base";
 import PostDetail from "../components/PostDetail";
 import ScrollTop from "../components/ScrollTop";
 import styles from "../styles/Slug.module.css";
-
-const endpoint = new GraphQLClient(
-  "https://api-eu-west-2.hygraph.com/v2/claqvecol6m0o01t7fp787wjw/master"
-);
 
 const query = gql`
   query Post($slug: String!) {

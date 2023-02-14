@@ -1,14 +1,21 @@
 .post {
   background-color: white;
-  -webkit-box-shadow: 10px 5px 15px 0px rgba(194,194,194,1);
-  -moz-box-shadow: 10px 5px 15px 0px rgba(194,194,194,1);
-  box-shadow: 10px 5px 15px 0px rgba(194,194,194,1);
+  -webkit-box-shadow: 10px 5px 15px 0px rgba(194, 194, 194, 1);
+  -moz-box-shadow: 10px 5px 15px 0px rgba(194, 194, 194, 1);
+  box-shadow: 10px 5px 15px 0px rgba(194, 194, 194, 1);
   border-radius: 20px;
   overflow: hidden;
   text-decoration: none;
-  transition: all .1s ease-in-out;
+  transition: all 0.1s ease-in-out;
   position: relative;
 }
+
+.post:hover {
+  -webkit-box-shadow: 5px 5px 10px 0px rgb(174, 174, 174);
+  -moz-box-shadow: 5px 5px 10px 0px rgba(174, 174, 174, 1);
+  box-shadow: 5px 5px 10px 0px rgba(174, 174, 174, 1);
+}
+
 .labelNew {
   position: absolute;
   top: 0px;
@@ -21,7 +28,7 @@
   text-align: center;
   font-size: 13px;
   background: #da0004;
-  background: linear-gradient(to bottom,  #da0004 0%,#ae1511 100%);
+  background: linear-gradient(to bottom, #da0004 0%, #ae1511 100%);
 }
 
 .labelNew:after {
@@ -29,17 +36,11 @@
   content: "";
   top: 30px;
   left: 0;
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;
   border-top: 10px solid #ae1511;
-}
-
-.post:hover {
-  -webkit-box-shadow: 5px 5px 10px 0px rgb(174, 174, 174);
-  -moz-box-shadow: 5px 5px 10px 0px rgba(174,174,174,1);
-  box-shadow: 5px 5px 10px 0px rgba(174,174,174,1);
 }
 
 .link {
@@ -83,7 +84,8 @@
   margin-bottom: 12px;
 }
 
-.country, .region {
+.country,
+.region {
   display: inline-block;
   font-size: 14px;
   background-color: #07555c;
