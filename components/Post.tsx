@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,7 +13,6 @@ export default function Post({ post, isNew }: any) {
 
   return (
     <div className={styles.post}>
-      {isNew ? <div className={styles.labelNew}>New</div>: null}
       <Link href={slug} className={styles.link}>
         <div className={styles.imageWrapper}>
           <Image
@@ -46,6 +44,7 @@ export default function Post({ post, isNew }: any) {
             }}
           />
         </div>
+        {isNew ? <div className={styles.labelNew}>New</div>: null}
       </Link>
     </div>
   );

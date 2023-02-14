@@ -11,7 +11,7 @@ const endpoint = new GraphQLClient(
 
 const query = gql`
   {
-    posts(orderBy: date_ASC, first: 100) {
+    posts(orderBy: date_DESC, first: 100) {
       id
       date
       slug
@@ -31,7 +31,7 @@ const query = gql`
 export async function getStaticProps() {
   const { posts } = await endpoint.request(query);
   // zobrazuje o jeden post méně (ten poslední se nezobrazí)
-  const showedPosts = posts.slice(0, posts.length - 1);
+  const showedPosts = posts.slice(1, posts.length);
   return {
     props: {
       showedPosts,
@@ -43,6 +43,8 @@ export async function getStaticProps() {
 export default function Home({ showedPosts }: any) {
   const [selectedOptions, setSelectedOptions] = useState<any[]>([]);
 
+  const newestPostId = showedPosts[0].id
+  
   if (!showedPosts) return null;
 
   const filteredPosts =
@@ -62,7 +64,7 @@ export default function Home({ showedPosts }: any) {
         />
         <div className={styles.posts}>
           {filteredPosts.map((post: any, idx: number) => {
-            return <Post post={post} key={idx} isNew={idx + 1 === filteredPosts.length} />;
+            return <Post post={post} key={idx} isNew={post.id === newestPostId} />;
           })}
         </div>
       </section>

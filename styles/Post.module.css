@@ -11,9 +11,8 @@
 }
 .labelNew {
   position: absolute;
-  z-index: 4;
-  right: 20px;
   top: 0px;
+  right: 20px;
   width: 60px;
   height: 30px;
   padding: 10px 0 0;
