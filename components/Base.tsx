@@ -7,13 +7,17 @@ import Home from "../assets/home.svg";
 import Logo from "../assets/travel.png";
 import styles from "../styles/Base.module.css";
 
-export default function Base({ children }: any) {
+export default function Base({ children, title }: any) {
   const { pathname } = useRouter();
+
+  const defaultTitle = "Káťa a Kuba na cestách";
+  const customTitle =
+    pathname !== "/" && title ? `${defaultTitle} - ${title}` : defaultTitle;
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>Káťa a Kuba na cestách</title>
+        <title>{customTitle}</title>
         <meta
           name="description"
           content="This is our travel blog for family and friends"

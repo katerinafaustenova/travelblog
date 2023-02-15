@@ -101,7 +101,7 @@ export default function PostItem({ post, sluglist }: any) {
 
   if (!post) return null;
 
-  const { slug } = post;
+  const { slug, title } = post;
 
   const slugIndex = sluglist.findIndex(
     (slugItem: any) => slugItem.slug === slug
@@ -111,7 +111,7 @@ export default function PostItem({ post, sluglist }: any) {
   const showNextPost = sluglist[slugIndex + 2];
 
   return (
-    <Base>
+    <Base title={title}>
       <section className={styles.content}>
         {prevPost && (
           <div className={styles.previousPost}>
