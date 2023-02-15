@@ -58,8 +58,8 @@ export default function PostDetail({ post }: any) {
           alt={image.title || image.fileName}
           onClick={() => setModalState({ open: true, chosenId: image.id })}
           fill
-          priority
           sizes="(max-width: 900px) 100vw, 70vw"
+          priority
         />
       </div>
       <PostContentWithImages

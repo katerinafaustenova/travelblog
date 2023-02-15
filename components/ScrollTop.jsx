@@ -15,7 +15,13 @@ export default function ScrollTop() {
       }}
       className={styles.scrollTop}
     >
-      <Image src={ArrowUp} alt="Scroll to the top" width={25} height={25} />
+      <Image
+        src={ArrowUp}
+        alt="Scroll to the top"
+        width={25}
+        height={25}
+        priority
+      />
     </button>
   );
 }

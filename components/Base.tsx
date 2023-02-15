@@ -29,7 +29,7 @@ export default function Base({ children, title }: any) {
         <header className={styles.header}>
           <div className={styles.headerContent}>
             <Link href="/">
-              <Image src={Logo} alt="Logo" width={60} height={60} />
+              <Image src={Logo} alt="Logo" width={60} height={60} priority />
             </Link>
             <h1>Káťa a Kuba na cestách</h1>
           </div>
@@ -38,7 +38,7 @@ export default function Base({ children, title }: any) {
         <header className={styles.headerHome}>
           <div className={styles.headerContent}>
             <Link href="/">
-              <Image src={Home} alt="Home" width={20} height={20} />
+              <Image src={Home} alt="Home" width={20} height={20} priority />
             </Link>
           </div>
         </header>
