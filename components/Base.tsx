@@ -7,7 +7,7 @@ import Home from "../assets/home.svg";
 import Logo from "../assets/travel.png";
 import styles from "../styles/Base.module.css";
 
-export default function Base({ children, title }: any) {
+export function Base({ children, title }: any) {
   const { pathname } = useRouter();
 
   const defaultTitle = "Káťa a Kuba na cestách";

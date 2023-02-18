@@ -1,9 +1,10 @@
 import classNames from "classnames";
 import Image from "next/image";
+import { Fragment } from "react";
 import styles from "../styles/PostContentWithImages.module.css";
 import { processNbsp } from "../utils/processNbsp";
 
-export default function PostContentWithImages({
+export function PostContentWithImages({
   contentWithImages,
   setModalState,
 }: any) {
@@ -11,21 +12,21 @@ export default function PostContentWithImages({
 
   return (
     <>
-      {contentWithImages.map(({ content, images }: any) => {
+      {contentWithImages.map(({ content, images }: any, index: any) => {
         const escapedContent = content?.html?.replaceAll("amp;", "");
         const processedContent = processNbsp(escapedContent) || escapedContent;
 
         return (
-          <>
-            {processedContent && (
+          <Fragment key={index}>
+            {processedContent ? (
               <div
                 dangerouslySetInnerHTML={{
                   __html: processedContent,
                 }}
                 className={styles.wysiwyg}
               />
-            )}
-            {images?.length > 0 && (
+            ) : null}
+            {images?.length > 0 ? (
               <div className={styles.wysiwygImages}>
                 {images.map(
                   ({ id, url, title, fileName, width, height }: any) => {
@@ -58,8 +59,8 @@ export default function PostContentWithImages({
                   }
                 )}
               </div>
-            )}
-          </>
+            ) : null}
+          </Fragment>
         );
       })}
     </>

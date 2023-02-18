@@ -1,11 +1,11 @@
-import { gql } from "graphql-request";
-import Link from "next/link";
 import { useEffect } from "react";
 import { endpoint } from ".";
-import Base from "../components/Base";
-import PostDetail from "../components/PostDetail";
-import ScrollTop from "../components/ScrollTop";
+import { gql } from "graphql-request";
+import Link from "next/link";
 import styles from "../styles/Slug.module.css";
+import { Base } from "../components/Base";
+import { PostDetail } from "../components/PostDetail";
+import { ScrollTop } from "../components/ScrollTop";
 
 const query = gql`
   query Post($slug: String!) {
@@ -113,7 +113,7 @@ export default function PostItem({ post, sluglist }: any) {
   return (
     <Base title={title}>
       <section className={styles.content}>
-        {prevPost && (
+        {prevPost ? (
           <div className={styles.previousPost}>
             <h3>
               Předchozí článek:&nbsp;
@@ -122,17 +122,17 @@ export default function PostItem({ post, sluglist }: any) {
               </Link>
             </h3>
           </div>
-        )}
+        ) : null}
         <PostDetail post={post} />
         <div className={styles.nextPost}>
-          {nextPost && showNextPost && (
+          {nextPost && showNextPost ? (
             <h3>
               Následující článek:&nbsp;
               <Link href={nextPost.slug} className={styles.link}>
                 {nextPost.title}
               </Link>
             </h3>
-          )}
+          ) : null}
           <ScrollTop />
         </div>
       </section>

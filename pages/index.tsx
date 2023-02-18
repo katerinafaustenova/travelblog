@@ -1,8 +1,8 @@
 import { gql, GraphQLClient } from "graphql-request";
 import { useState } from "react";
-import Base from "../components/Base";
-import MultiSelect from "../components/MultiSelect";
-import Post from "../components/Post";
+import { Base } from "../components/Base";
+import { MultiSelect } from "../components/MultiSelect";
+import { Post } from "../components/Post";
 import styles from "../styles/Home.module.css";
 import { isPostNewest } from "../utils/isPostNewest";
 

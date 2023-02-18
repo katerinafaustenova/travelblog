@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { KeyboardEvent, ReactNode, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "../styles/Portal.module.css";
 
@@ -27,7 +27,7 @@ export const Portal = ({ children, closeHandler }: PortalProps) => {
     };
   }, []);
 
-  return mounted && ref.current
+  return (mounted && ref.current)
     ? createPortal(
         <div className={styles.overlay}>
           <div className={styles.content}>

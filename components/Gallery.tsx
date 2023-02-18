@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import styles from "../styles/Gallery.module.css";
 
 interface ImagesProps {
@@ -49,7 +49,7 @@ export const Gallery = ({ images, chosenId }: GalleryProps) => {
           {"<"}
         </button>
       ) : null}
-      {images[activeIndex] && (
+      {images[activeIndex] ? (
         <Image
           src={images[activeIndex].url}
           alt={images[activeIndex].title || images[activeIndex].fileName}
@@ -57,7 +57,7 @@ export const Gallery = ({ images, chosenId }: GalleryProps) => {
           priority
           sizes="100vw"
         />
-      )}
+      ) : null}
       {!lastPosition ? (
         <button
           className={styles.right}

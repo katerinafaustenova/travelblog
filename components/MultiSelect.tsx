@@ -5,7 +5,7 @@ import { getCzechCountryName } from "../utils/getCzechCountryName";
 
 const animatedComponents = makeAnimated();
 
-function MultiSelect({ posts, setSelectedOptions }: any) {
+export function MultiSelect({ posts, setSelectedOptions }: any) {
   const uniqueCountries = Array.from(
     new Set(posts.map(({ country }: any) => country))
   );
@@ -36,4 +36,3 @@ function MultiSelect({ posts, setSelectedOptions }: any) {
   );
 }
 
-export default MultiSelect;

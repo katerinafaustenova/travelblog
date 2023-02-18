@@ -1,0 +1,26 @@
+.labelNew {
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  width: 60px;
+  height: 30px;
+  padding: 10px 0 0;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 13px;
+  background: #da0004;
+  background: linear-gradient(to bottom, #da0004 0%, #ae1511 100%);
+}
+
+.labelNew:after {
+  position: absolute;
+  content: "";
+  top: 30px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 10px solid #ae1511;
+}

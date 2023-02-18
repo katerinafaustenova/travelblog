@@ -1,16 +1,16 @@
+import { useState } from "react";
 import { format } from "date-fns";
 import Image from "next/image";
-import { useState } from "react";
 import styles from "../styles/PostDetail.module.css";
 import { getCzechCountryName } from "../utils/getCzechCountryName";
 import { getEscapedText } from "../utils/getEscapedText";
 import { processNbsp } from "../utils/processNbsp";
 import { Gallery } from "./Gallery";
 import { Portal } from "./Portal";
-import PostContentWithImages from "./PostContentWithImages";
-import PostItineraryItem from "./PostItineraryItem";
+import { PostContentWithImages } from "./PostContentWithImages";
+import { PostItineraryItem } from "./PostItineraryItem";
 
-export default function PostDetail({ post }: any) {
+export function PostDetail({ post }: any) {
   const [modalState, setModalState] = useState({ open: false, chosenId: "" });
 
   if (!post) return null;
@@ -66,14 +66,14 @@ export default function PostDetail({ post }: any) {
         contentWithImages={contentWithImages}
         setModalState={setModalState}
       />
-      {map && (
+      {map ? (
         <div
           className={styles.mapContainer}
           dangerouslySetInnerHTML={{ __html: map }}
         />
-      )}
+      ) : null}
       <PostItineraryItem itinerary_item_ref={itinerary_item_ref} />
-      {modalState?.open && allImages ? (
+      {(modalState?.open && allImages) ? (
         <Portal
           closeHandler={() => setModalState({ ...modalState, open: false })}
         >

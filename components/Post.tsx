@@ -5,8 +5,9 @@ import styles from "../styles/Post.module.css";
 import { getCzechCountryName } from "../utils/getCzechCountryName";
 import { getEscapedText } from "../utils/getEscapedText";
 import { processNbsp } from "../utils/processNbsp";
+import { Label } from "./Label";
 
-export default function Post({ post, isNew }: any) {
+export function Post({ post, isNew }: any) {
   if (!post) return null;
 
   const { slug, date, title, description, image, country, region } = post;
@@ -44,7 +45,7 @@ export default function Post({ post, isNew }: any) {
             }}
           />
         </div>
-        {isNew ? <div className={styles.labelNew}>New</div> : null}
+        {isNew ? <Label category="new" /> : null}
       </Link>
     </div>
   );

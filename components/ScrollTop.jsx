@@ -2,7 +2,7 @@ import Image from "next/image";
 import ArrowUp from "../assets/arrow-up.svg";
 import styles from "../styles/ScrollTop.module.css";
 
-export default function ScrollTop() {
+export function ScrollTop() {
   return (
     <button
       aria-label="Nahoru"

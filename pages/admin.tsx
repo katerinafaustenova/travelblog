@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Base from "../components/Base";
+import { Base } from "../components/Base";
 import styles from "../styles/Admin.module.css";
 
 const images = [

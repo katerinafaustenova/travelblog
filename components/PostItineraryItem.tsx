@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import styles from "../styles/PostItineraryItem.module.css";
 import { processNbsp } from "../utils/processNbsp";
 
-export default function PostItineraryItem({ itinerary_item_ref }: any) {
+export function PostItineraryItem({ itinerary_item_ref }: any) {
   if (!itinerary_item_ref || itinerary_item_ref.length < 0) return null;
 
   return (
@@ -21,12 +21,12 @@ export default function PostItineraryItem({ itinerary_item_ref }: any) {
               <h5 className={styles.itineraryName}>{processedTitle}</h5>
             </div>
             <div className={styles.itineraryContent}>
-              {processedText && (
+              {processedText ? (
                 <p
                   className={styles.itineraryText}
                   dangerouslySetInnerHTML={{ __html: processedText }}
                 />
-              )}
+              ) : null }
             </div>
           </div>
         );
