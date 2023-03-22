@@ -63,7 +63,7 @@ export default function Home({ posts }: any) {
               <Post
                 key={idx}
                 post={post}
-                isNew={isPostNewest(posts[0].id, post.id, post.date)}
+                isNew={isPostNewest(posts, post.id, post.date)}
               />
             );
           })}

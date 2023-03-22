@@ -1,13 +1,13 @@
 import { differenceInCalendarDays } from "date-fns";
 
 export const isPostNewest = (
-  firstPostId: string,
+  posts: any,
   currentId: string,
   currentDate: any,
   numberOfDays: number = 30
 ) => {
-  return (
-    differenceInCalendarDays(new Date(), new Date(currentDate)) <
-      numberOfDays && currentId === firstPostId
-  );
+  const isLastTwoPosts = currentId === posts[0].id || currentId === posts[1].id;
+  const isLastMonth =
+    differenceInCalendarDays(new Date(), new Date(currentDate)) < numberOfDays;
+  return isLastMonth && isLastTwoPosts;
 };
