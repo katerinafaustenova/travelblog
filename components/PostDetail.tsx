@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { format } from "date-fns";
 import Image from "next/image";
+import { useState } from "react";
 import styles from "../styles/PostDetail.module.css";
 import { getCzechCountryName } from "../utils/getCzechCountryName";
 import { getEscapedText } from "../utils/getEscapedText";
@@ -73,7 +73,7 @@ export function PostDetail({ post }: any) {
         />
       ) : null}
       <PostItineraryItem itinerary_item_ref={itinerary_item_ref} />
-      {(modalState?.open && allImages) ? (
+      {modalState?.open && allImages ? (
         <Portal
           closeHandler={() => setModalState({ ...modalState, open: false })}
         >

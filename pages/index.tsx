@@ -25,31 +25,30 @@ const query = gql`
         title
         fileName
       }
+      visible
     }
   }
 `;
 
 export async function getStaticProps() {
   const { posts } = await endpoint.request(query);
-  // zobrazuje o jeden post méně (ten poslední se nezobrazí)
-  const showedPosts = posts.slice(1, posts.length);
   return {
     props: {
-      showedPosts,
+      posts,
     },
     revalidate: 100,
   };
 }
 
-export default function Home({ showedPosts }: any) {
+export default function Home({ posts }: any) {
   const [selectedOptions, setSelectedOptions] = useState<any[]>([]);
 
-  if (!showedPosts) return null;
+  if (!posts) return null;
 
   const filteredPosts =
     selectedOptions.length === 0
-      ? showedPosts
-      : showedPosts.filter(({ country }: any) => {
+      ? posts
+      : posts.filter(({ country }: any) => {
           const array = selectedOptions.map(({ value }) => value);
           return array.includes(country);
         });
@@ -57,17 +56,14 @@ export default function Home({ showedPosts }: any) {
   return (
     <Base>
       <section className={styles.content}>
-        <MultiSelect
-          posts={showedPosts}
-          setSelectedOptions={setSelectedOptions}
-        />
+        <MultiSelect posts={posts} setSelectedOptions={setSelectedOptions} />
         <div className={styles.posts}>
           {filteredPosts.map((post: any, idx: number) => {
             return (
               <Post
                 key={idx}
                 post={post}
-                isNew={isPostNewest(showedPosts[0].id, post.id, post.date)}
+                isNew={isPostNewest(posts[0].id, post.id, post.date)}
               />
             );
           })}

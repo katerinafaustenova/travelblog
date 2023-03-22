@@ -53,20 +53,22 @@
   }
 }
 
-.itineraryText {
+.itineraryContent {
+  min-height: 20px;
   padding-left: 58px;
   border-left: 4px solid #eee;
   margin-left: 28px;
   text-align: justify;
 }
+
 @media all and (max-width: 500px) {
-  .itineraryText {
+  .itineraryContent {
     padding-left: 36px;
     margin-left: 23px;
   }
 }
 @media all and (max-width: 900px) {
-  .itineraryText {
+  .itineraryContent {
     margin-top: 20px;
   }
 }
@@ -74,6 +76,6 @@
 .itineraryItem:hover .itineraryDate {
   background-color: #0b525c;
 }
-.itineraryItem:hover .itineraryText {
+.itineraryItem:hover .itineraryContent {
   border-left-color: #0c77855d;
 }

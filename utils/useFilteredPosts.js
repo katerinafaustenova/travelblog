@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+// not used
+
 function useFilteredPosts() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);

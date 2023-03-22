@@ -7,6 +7,10 @@ export const countries = [
     value: "Philippines",
     label: "Filipíny",
   },
+  {
+    value: "Vietnam",
+    label: "Vietnam",
+  },
 ];
 
 export const getCzechCountryName = (country: string) => {

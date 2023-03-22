@@ -1,11 +1,11 @@
-import { useEffect } from "react";
-import { endpoint } from ".";
 import { gql } from "graphql-request";
 import Link from "next/link";
-import styles from "../styles/Slug.module.css";
+import { useEffect } from "react";
+import { endpoint } from ".";
 import { Base } from "../components/Base";
 import { PostDetail } from "../components/PostDetail";
 import { ScrollTop } from "../components/ScrollTop";
+import styles from "../styles/Slug.module.css";
 
 const query = gql`
   query Post($slug: String!) {
@@ -17,6 +17,7 @@ const query = gql`
       region
       title
       description
+      visible
       image {
         id
         url
@@ -59,6 +60,7 @@ const sluglistQuery = gql`
     posts(first: 100) {
       slug
       title
+      visible
     }
   }
 `;
@@ -79,7 +81,7 @@ export async function getStaticProps({ params }: any) {
   // TODO refaktor queries, nemusim tahat jeden post z query, kdyz uz tu mam natazene vsechny
   const { posts } = await endpoint.request(sluglistQuery);
   const sluglist = posts.map((post: any) => {
-    return { slug: post.slug, title: post.title };
+    return { slug: post.slug, title: post.title, visible: post.visible };
   });
   return {
     props: {
@@ -108,7 +110,6 @@ export default function PostItem({ post, sluglist }: any) {
   );
   const prevPost = sluglist[slugIndex - 1];
   const nextPost = sluglist[slugIndex + 1];
-  const showNextPost = sluglist[slugIndex + 2];
 
   return (
     <Base title={title}>
@@ -125,7 +126,7 @@ export default function PostItem({ post, sluglist }: any) {
         ) : null}
         <PostDetail post={post} />
         <div className={styles.nextPost}>
-          {nextPost && showNextPost ? (
+          {nextPost && nextPost?.visible ? (
             <h3>
               Následující článek:&nbsp;
               <Link href={nextPost.slug} className={styles.link}>

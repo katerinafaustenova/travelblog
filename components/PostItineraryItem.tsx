@@ -5,6 +5,12 @@ import { processNbsp } from "../utils/processNbsp";
 export function PostItineraryItem({ itinerary_item_ref }: any) {
   if (!itinerary_item_ref || itinerary_item_ref.length < 0) return null;
 
+  itinerary_item_ref.sort((next: any, prev: any) => {
+    const nextDate = Date.parse(next.date);
+    const prevDate = Date.parse(prev.date);
+    return nextDate - prevDate;
+  });
+
   return (
     <>
       <h3 className={styles.itineraryTitle}>Itinerář:</h3>
@@ -26,7 +32,7 @@ export function PostItineraryItem({ itinerary_item_ref }: any) {
                   className={styles.itineraryText}
                   dangerouslySetInnerHTML={{ __html: processedText }}
                 />
-              ) : null }
+              ) : null}
             </div>
           </div>
         );

@@ -8,7 +8,7 @@ import { processNbsp } from "../utils/processNbsp";
 import { Label } from "./Label";
 
 export function Post({ post, isNew }: any) {
-  if (!post) return null;
+  if (!post || !post.visible) return null;
 
   const { slug, date, title, description, image, country, region } = post;
 
