@@ -6,7 +6,7 @@ export const LangProvider = ({ children }) => {
   const [enLang, setEnLang] = useState(false);
 
   useEffect(() => {
-    const storageValue = localStorage.getItem("enLang");
+    const storageValue = JSON.parse(localStorage.getItem("enLang"));
     if (storageValue !== null) {
       setEnLang(storageValue);
     }
@@ -14,7 +14,7 @@ export const LangProvider = ({ children }) => {
 
   const toggleEnLang = () => {
     setEnLang((prevState) => !prevState);
-    localStorage.setItem("enLang", !enLang);
+    localStorage.setItem("enLang", JSON.stringify(!enLang));
   };
 
   return (
