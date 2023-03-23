@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import LangContext from "../context/LangContext";
 import styles from "../styles/PostDetail.module.css";
 import { getCzechCountryName } from "../utils/getCzechCountryName";
 import { getEscapedText } from "../utils/getEscapedText";
@@ -11,6 +12,7 @@ import { PostContentWithImages } from "./PostContentWithImages";
 import { PostItineraryItem } from "./PostItineraryItem";
 
 export function PostDetail({ post }: any) {
+  const { enLang } = useContext(LangContext);
   const [modalState, setModalState] = useState({ open: false, chosenId: "" });
 
   if (!post) return null;
@@ -20,17 +22,22 @@ export function PostDetail({ post }: any) {
     country,
     region,
     title,
+    titleEn,
     description,
+    descriptionEn,
     image,
     contentWithImages,
     map,
     itinerary_item_ref,
   } = post;
 
-  const countryName = getCzechCountryName(getEscapedText(country, "_"));
+  const countryName = enLang
+    ? getEscapedText(country, "_")
+    : getCzechCountryName(getEscapedText(country, "_"));
   const regionName = getEscapedText(region, "_");
-
-  const processedDescription = processNbsp(description) || description;
+  const newTitle = enLang && titleEn ? titleEn : title;
+  const newDescription = enLang && descriptionEn ? descriptionEn : description;
+  const processedDescription = processNbsp(newDescription) || newDescription;
 
   const allImages = contentWithImages?.map(({ images }: any) => images)?.flat();
   allImages.unshift(image);
@@ -45,7 +52,7 @@ export function PostDetail({ post }: any) {
           {format(new Date(date), "dd.MM.yyyy")}
         </time>
       </div>
-      <h2 className={styles.title}>{title}</h2>
+      <h2 className={styles.title}>{newTitle}</h2>
       <p
         className={styles.perex}
         dangerouslySetInnerHTML={{

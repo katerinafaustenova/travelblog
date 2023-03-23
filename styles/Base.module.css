@@ -10,6 +10,7 @@
   width: 100%;
   background-color: #053137;
   z-index: 2;
+  display: flex;
 }
 
 .headerContent {
@@ -39,7 +40,7 @@
   line-height: 50px;
 }
 .headerContent img {
-  transition: all .15s ease-in-out;
+  transition: all 0.15s ease-in-out;
 }
 
 .headerContent img:hover {
@@ -84,6 +85,31 @@
   }
 }
 
+.languageToggleWrapper {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  line-height: 0;
+}
+
+.headerHome .languageToggleWrapper {
+  top: 30px;
+  transform: translateY(0);
+  z-index: 1;
+}
+
+.languageToggleBtn {
+  all: unset;
+  line-height: 0;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.languageToggleBtn:hover {
+  opacity: 1;
+}
+
 .main {
   width: 100%;
   max-width: 940px;
@@ -98,4 +124,3 @@
   text-align: center;
   font-size: 14px;
 }
-

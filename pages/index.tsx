@@ -19,10 +19,13 @@ const query = gql`
       country
       region
       title
+      titleEn
       description
+      descriptionEn
       image {
         url
         title
+        titleEn
         fileName
       }
       visible

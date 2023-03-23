@@ -1,10 +1,11 @@
 import { gql } from "graphql-request";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { endpoint } from ".";
 import { Base } from "../components/Base";
 import { PostDetail } from "../components/PostDetail";
 import { ScrollTop } from "../components/ScrollTop";
+import LangContext from "../context/LangContext";
 import styles from "../styles/Slug.module.css";
 
 const query = gql`
@@ -16,12 +17,15 @@ const query = gql`
       country
       region
       title
+      titleEn
       description
+      descriptionEn
       visible
       image {
         id
         url
         title
+        titleEn
         fileName
         width
         height
@@ -32,10 +36,14 @@ const query = gql`
           content {
             html
           }
+          contentEn {
+            html
+          }
           images(first: 100) {
             id
             url
             title
+            titleEn
             fileName
             width
             height
@@ -60,6 +68,7 @@ const sluglistQuery = gql`
     posts(first: 100) {
       slug
       title
+      titleEn
       visible
     }
   }
@@ -81,7 +90,12 @@ export async function getStaticProps({ params }: any) {
   // TODO refaktor queries, nemusim tahat jeden post z query, kdyz uz tu mam natazene vsechny
   const { posts } = await endpoint.request(sluglistQuery);
   const sluglist = posts.map((post: any) => {
-    return { slug: post.slug, title: post.title, visible: post.visible };
+    return {
+      slug: post.slug,
+      title: post.title,
+      titleEn: post.titleEn,
+      visible: post.visible,
+    };
   });
   return {
     props: {
@@ -93,6 +107,8 @@ export async function getStaticProps({ params }: any) {
 }
 
 export default function PostItem({ post, sluglist }: any) {
+  const { enLang } = useContext(LangContext);
+
   useEffect(() => {
     if (typeof window !== undefined) {
       document?.querySelectorAll("p:empty").forEach((x) => {
@@ -103,7 +119,8 @@ export default function PostItem({ post, sluglist }: any) {
 
   if (!post) return null;
 
-  const { slug, title } = post;
+  const { slug, title, titleEn } = post;
+  const newTitle = enLang && titleEn ? titleEn : title;
 
   const slugIndex = sluglist.findIndex(
     (slugItem: any) => slugItem.slug === slug
@@ -112,14 +129,14 @@ export default function PostItem({ post, sluglist }: any) {
   const nextPost = sluglist[slugIndex + 1];
 
   return (
-    <Base title={title}>
+    <Base title={newTitle}>
       <section className={styles.content}>
         {prevPost ? (
           <div className={styles.previousPost}>
             <h3>
-              Předchozí článek:&nbsp;
+              {enLang ? "Previous article" : "Předchozí článek"}:&nbsp;
               <Link href={prevPost.slug} className={styles.link}>
-                {prevPost.title}
+                {enLang && prevPost.titleEn ? prevPost.titleEn : prevPost.title}
               </Link>
             </h3>
           </div>
@@ -128,9 +145,9 @@ export default function PostItem({ post, sluglist }: any) {
         <div className={styles.nextPost}>
           {nextPost && nextPost?.visible ? (
             <h3>
-              Následující článek:&nbsp;
+              {enLang ? "Next article" : "Následující článek"}:&nbsp;
               <Link href={nextPost.slug} className={styles.link}>
-                {nextPost.title}
+                {enLang && nextPost.titleEn ? nextPost.titleEn : nextPost.title}
               </Link>
             </h3>
           ) : null}

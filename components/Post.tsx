@@ -1,6 +1,8 @@
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
+import LangContext from "../context/LangContext";
 import styles from "../styles/Post.module.css";
 import { getCzechCountryName } from "../utils/getCzechCountryName";
 import { getEscapedText } from "../utils/getEscapedText";
@@ -8,9 +10,24 @@ import { processNbsp } from "../utils/processNbsp";
 import { Label } from "./Label";
 
 export function Post({ post, isNew }: any) {
+  const { enLang } = useContext(LangContext);
+
   if (!post || !post.visible) return null;
 
-  const { slug, date, title, description, image, country, region } = post;
+  const {
+    slug,
+    date,
+    title,
+    titleEn,
+    description,
+    descriptionEn,
+    image,
+    country,
+    region,
+  } = post;
+
+  const newTitle = enLang && titleEn ? titleEn : title;
+  const newDesc = enLang && descriptionEn ? descriptionEn : description;
 
   return (
     <div className={styles.post}>
@@ -33,15 +50,17 @@ export function Post({ post, isNew }: any) {
           </time>
           <div className={styles.location}>
             <span className={styles.country}>
-              {getCzechCountryName(getEscapedText(country, "_"))}
+              {enLang
+                ? getEscapedText(country, "_")
+                : getCzechCountryName(getEscapedText(country, "_"))}
             </span>
             <span className={styles.region}>{getEscapedText(region, "_")}</span>
           </div>
-          <h2 className={styles.title}>{title}</h2>
+          <h2 className={styles.title}>{newTitle}</h2>
           <p
             className={styles.perex}
             dangerouslySetInnerHTML={{
-              __html: processNbsp(description) || description,
+              __html: processNbsp(newDesc) || newDesc,
             }}
           />
         </div>

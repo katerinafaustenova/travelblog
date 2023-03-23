@@ -47,6 +47,7 @@
 }
 
 .wysiwygImageWrapper {
+  position: relative;
   width: 100%;
 }
 

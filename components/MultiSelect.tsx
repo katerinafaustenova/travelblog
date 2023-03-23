@@ -1,11 +1,15 @@
+import { useContext } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import LangContext from "../context/LangContext";
 import { customStyles } from "../utils/customMultiSelectStyles";
 import { getCzechCountryName } from "../utils/getCzechCountryName";
 
 const animatedComponents = makeAnimated();
 
 export function MultiSelect({ posts, setSelectedOptions }: any) {
+  const { enLang } = useContext(LangContext);
+
   const uniqueCountries = Array.from(
     new Set(posts.map(({ country }: any) => country))
   );
@@ -13,7 +17,7 @@ export function MultiSelect({ posts, setSelectedOptions }: any) {
   const options = uniqueCountries.map((country: any) => {
     return {
       value: country,
-      label: getCzechCountryName(country),
+      label: enLang ? country : getCzechCountryName(country),
     };
   });
 
@@ -29,10 +33,11 @@ export function MultiSelect({ posts, setSelectedOptions }: any) {
       isMulti
       closeMenuOnSelect={false}
       styles={customStyles}
-      placeholder="Filtr"
-      noOptionsMessage={() => "Žádné další možnosti"}
+      placeholder={enLang ? "Filter" : "Filtr"}
+      noOptionsMessage={() =>
+        enLang ? "No other options" : "Žádné další možnosti"
+      }
       classNamePrefix="react-select"
     />
   );
 }
-
