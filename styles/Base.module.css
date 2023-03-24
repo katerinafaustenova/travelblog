@@ -94,9 +94,14 @@
 }
 
 .headerHome .languageToggleWrapper {
-  top: 30px;
+  top: 20px;
   transform: translateY(0);
   z-index: 1;
+}
+@media all and (max-width: 1080px) {
+  .headerHome .languageToggleWrapper {
+    top: 26px;
+  }
 }
 
 .languageToggleBtn {

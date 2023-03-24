@@ -131,16 +131,16 @@ export default function PostItem({ post, sluglist }: any) {
   return (
     <Base title={newTitle}>
       <section className={styles.content}>
-        {prevPost ? (
-          <div className={styles.previousPost}>
+        <div className={styles.previousPost}>
+          {prevPost && prevPost?.visible ? (
             <h3>
               {enLang ? "Previous article" : "Předchozí článek"}:&nbsp;
               <Link href={prevPost.slug} className={styles.link}>
                 {enLang && prevPost.titleEn ? prevPost.titleEn : prevPost.title}
               </Link>
             </h3>
-          </div>
-        ) : null}
+          ) : null}
+        </div>
         <PostDetail post={post} />
         <div className={styles.nextPost}>
           {nextPost && nextPost?.visible ? (
