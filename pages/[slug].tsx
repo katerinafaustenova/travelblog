@@ -122,11 +122,14 @@ export default function PostItem({ post, sluglist }: any) {
   const { slug, title, titleEn } = post;
   const newTitle = enLang && titleEn ? titleEn : title;
 
-  const slugIndex = sluglist.findIndex(
+  const visibleSluglist = sluglist.filter((item: any) => item.visible);
+  const slugIndex = visibleSluglist?.findIndex(
     (slugItem: any) => slugItem.slug === slug
   );
-  const prevPost = sluglist[slugIndex - 1];
-  const nextPost = sluglist[slugIndex + 1];
+  const prevPost =
+    slugIndex === -1 ? undefined : visibleSluglist[slugIndex - 1];
+  const nextPost =
+    slugIndex === -1 ? undefined : visibleSluglist[slugIndex + 1];
 
   return (
     <Base title={newTitle}>
