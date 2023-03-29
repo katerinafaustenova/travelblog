@@ -48,6 +48,8 @@ export default function Home({ posts }: any) {
 
   if (!posts) return null;
 
+  const visiblePosts = posts?.filter((post: any) => post.visible);
+
   const filteredPosts =
     selectedOptions.length === 0
       ? posts
@@ -66,7 +68,7 @@ export default function Home({ posts }: any) {
               <Post
                 key={idx}
                 post={post}
-                isNew={isPostNewest(posts, post.id, post.date)}
+                isNew={isPostNewest(visiblePosts, post.id, post.date)}
               />
             );
           })}
