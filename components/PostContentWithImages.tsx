@@ -14,7 +14,6 @@ export function PostContentWithImages({
   const noContent = !contentWithImages || contentWithImages?.length < 1;
 
   if (noContent && !imagesJsonData) return null;
-  console.log(contentWithImages, imagesJsonData);
 
   return (
     <>
@@ -80,12 +79,12 @@ export function PostContentWithImages({
       {noContent && imagesJsonData && (
         <div className={styles.wysiwygImages}>
           {imagesJsonData.map(
-            ({ slug, title, fileName, width, height }: any, idx: number) => {
+            ({ id, url, title, fileName, width, height }: any) => {
               const paddingRatio = (height / width) * 100;
               const isAlone = imagesJsonData.length === 1;
               return (
                 <div
-                  key={idx}
+                  key={id}
                   className={classNames(
                     styles.wysiwygImageFlex,
                     isAlone && styles.isAlone
@@ -96,10 +95,10 @@ export function PostContentWithImages({
                     style={{ paddingBottom: `${paddingRatio}%` }}
                   >
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_BASE_PATH}/${slug}/${fileName}`}
+                      src={url}
                       alt={title || fileName}
                       onClick={() =>
-                        setModalState({ open: true, chosenId: idx })
+                        setModalState({ open: true, chosenId: id })
                       }
                       fill
                       sizes="(max-width: 700px) 100vw, 50vw"

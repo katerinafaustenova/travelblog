@@ -103,15 +103,22 @@ export async function getStaticProps({ params }: any) {
     const { posts } = await endpoint.request(sluglistQuery);
     sluglist = posts;
   } catch (error) {
-    console.error("Error fetching data for previous and next post:", error);
+    console.error("Error fetching data for sluglist:", error);
     sluglist = null;
   }
 
   try {
-    const imagesJsonResponse = await fetch(
+    const jsonResponse = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_PATH}/${slug}/images.json`
     );
-    imagesJsonData = await imagesJsonResponse.json();
+    const jsonData = await jsonResponse.json();
+    imagesJsonData = jsonData.map((item: any, idx: number) => {
+      return {
+        ...item,
+        id: idx.toString(),
+        url: `${process.env.NEXT_PUBLIC_BASE_PATH}/${slug}/${item.fileName}`,
+      };
+    });
   } catch (error) {
     console.error("Error fetching data for imagesJsonData:", error);
     imagesJsonData = null;

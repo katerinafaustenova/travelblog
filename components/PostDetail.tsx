@@ -39,7 +39,10 @@ export function PostDetail({ post, imagesJsonData }: any) {
   const newDescription = enLang && descriptionEn ? descriptionEn : description;
   const processedDescription = processNbsp(newDescription) || newDescription;
 
-  const allImages = contentWithImages?.map(({ images }: any) => images)?.flat();
+  const allHygraphImages = contentWithImages
+    ?.map(({ images }: any) => images)
+    ?.flat();
+  const allImages = [...allHygraphImages, ...imagesJsonData];
   allImages.unshift(image);
 
   return (
