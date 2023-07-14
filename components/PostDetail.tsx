@@ -42,7 +42,10 @@ export function PostDetail({ post, imagesJsonData }: any) {
   const allHygraphImages = contentWithImages
     ?.map(({ images }: any) => images)
     ?.flat();
-  const allImages = [...allHygraphImages, ...imagesJsonData];
+  const allImages =
+    imagesJsonData?.length > 1
+      ? [...allHygraphImages, ...imagesJsonData]
+      : allHygraphImages;
   allImages.unshift(image);
 
   return (
