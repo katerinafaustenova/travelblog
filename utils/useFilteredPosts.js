@@ -23,8 +23,6 @@ function useFilteredPosts() {
     }
   }, []);
 
-  console.log("V HOOKU", data, "loading", loading);
-
   return { data, loading, handleSetOptions };
 }
 

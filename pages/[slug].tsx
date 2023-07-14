@@ -85,28 +85,52 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
+  let currentPost;
+  let sluglist;
+  let imagesJsonData;
+
   const slug = params.slug;
-  const { post } = await endpoint.request(query, { slug });
-  // TODO refaktor queries, nemusim tahat jeden post z query, kdyz uz tu mam natazene vsechny
-  const { posts } = await endpoint.request(sluglistQuery);
-  const sluglist = posts.map((post: any) => {
-    return {
-      slug: post.slug,
-      title: post.title,
-      titleEn: post.titleEn,
-      visible: post.visible,
-    };
-  });
+
+  try {
+    const { post } = await endpoint.request(query, { slug });
+    currentPost = post;
+  } catch (error) {
+    console.error("Error fetching data for current post:", error);
+    currentPost = null;
+  }
+
+  try {
+    const { posts } = await endpoint.request(sluglistQuery);
+    sluglist = posts;
+  } catch (error) {
+    console.error("Error fetching data for previous and next post:", error);
+    sluglist = null;
+  }
+
+  try {
+    const imagesJsonResponse = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_PATH}/${slug}/images.json`
+    );
+    imagesJsonData = await imagesJsonResponse.json();
+  } catch (error) {
+    console.error("Error fetching data for imagesJsonData:", error);
+    imagesJsonData = null;
+  }
+
+  const props = {
+    post: currentPost,
+    sluglist,
+    imagesJsonData,
+  };
+
   return {
-    props: {
-      post,
-      sluglist,
-    },
+    props,
     revalidate: 100,
   };
 }
 
-export default function PostItem({ post, sluglist }: any) {
+export default function PostItem({ post, sluglist, imagesJsonData }: any) {
+  console.log("imagesJsonData", imagesJsonData);
   const { enLang } = useContext(LangContext);
 
   useEffect(() => {
@@ -117,11 +141,9 @@ export default function PostItem({ post, sluglist }: any) {
     }
   }, [post.slug]);
 
-  if (!post) return null;
+  if (!post || post === null) return null;
 
   const { slug, title, titleEn } = post;
-  const newTitle = enLang && titleEn ? titleEn : title;
-
   const visibleSluglist = sluglist.filter((item: any) => item.visible);
   const slugIndex = visibleSluglist?.findIndex(
     (slugItem: any) => slugItem.slug === slug
@@ -130,6 +152,7 @@ export default function PostItem({ post, sluglist }: any) {
     slugIndex === -1 ? undefined : visibleSluglist[slugIndex - 1];
   const nextPost =
     slugIndex === -1 ? undefined : visibleSluglist[slugIndex + 1];
+  const newTitle = enLang && titleEn ? titleEn : title;
 
   return (
     <Base title={newTitle}>

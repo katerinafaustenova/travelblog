@@ -11,6 +11,14 @@ export const countries = [
     value: "Vietnam",
     label: "Vietnam",
   },
+  {
+    value: "Canada",
+    label: "Kanada",
+  },
+  {
+    value: "USA",
+    label: "USA",
+  },
 ];
 
 export const getCzechCountryName = (country: string) => {
