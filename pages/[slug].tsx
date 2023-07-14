@@ -130,7 +130,6 @@ export async function getStaticProps({ params }: any) {
 }
 
 export default function PostItem({ post, sluglist, imagesJsonData }: any) {
-  console.log("imagesJsonData", imagesJsonData);
   const { enLang } = useContext(LangContext);
 
   useEffect(() => {
@@ -167,7 +166,7 @@ export default function PostItem({ post, sluglist, imagesJsonData }: any) {
             </h3>
           ) : null}
         </div>
-        <PostDetail post={post} />
+        <PostDetail post={post} imagesJsonData={imagesJsonData} />
         <div className={styles.nextPost}>
           {nextPost && nextPost?.visible ? (
             <h3>

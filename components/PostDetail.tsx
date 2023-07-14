@@ -11,7 +11,7 @@ import { Portal } from "./Portal";
 import { PostContentWithImages } from "./PostContentWithImages";
 import { PostItineraryItem } from "./PostItineraryItem";
 
-export function PostDetail({ post }: any) {
+export function PostDetail({ post, imagesJsonData }: any) {
   const { enLang } = useContext(LangContext);
   const [modalState, setModalState] = useState({ open: false, chosenId: "" });
 
@@ -71,6 +71,7 @@ export function PostDetail({ post }: any) {
       </div>
       <PostContentWithImages
         contentWithImages={contentWithImages}
+        imagesJsonData={imagesJsonData}
         setModalState={setModalState}
       />
       {map ? (
