@@ -1,5 +1,9 @@
 export const countries = [
   {
+    value: "Thailand",
+    label: "Thajsko",
+  },
+  {
     value: "Indonesia",
     label: "Indonésie",
   },
