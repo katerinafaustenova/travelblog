@@ -42,9 +42,9 @@ export default function Admin({}: any) {
     <Base>
       <section className={styles.content}>
         <h2 className={styles.title}>Admin</h2>
-        <p className={styles.perex}>panglao</p>
+        <h3 className={styles.subtitle}>Víza:</h3>
         {/* <img src="https://faustenova.cz/assets/img/macbook.png"></img> */}
-        {images.map((image): any => {
+        {/* {images.map((image): any => {
           return (
             <div key={image.id} className={styles.imgWrapper}>
               <Image
@@ -56,7 +56,7 @@ export default function Admin({}: any) {
               />
             </div>
           );
-        })}
+        })} */}
       </section>
     </Base>
   );
